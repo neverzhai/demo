@@ -35,7 +35,7 @@ public class AsyncExample {
         long start = System.currentTimeMillis();
         log.info("begin the task two, start time: {}", start);
 
-        Thread.sleep(random.nextInt(100));
+        Thread.sleep(random.nextInt(10));
 
         long end = System.currentTimeMillis();
         log.info("finish the task two, end time: {}", end);
