@@ -23,10 +23,10 @@ public class InterceptorTwo extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         log.info("interceptor two pre handle");
 
-        String token = request.getHeader("token");
-        if (StringUtils.isEmpty(token)) {
-           return false;
-        }
+//        String token = request.getHeader("token");
+//        if (StringUtils.isEmpty(token)) {
+//           return false;
+//        }
 
         return true;
     }
