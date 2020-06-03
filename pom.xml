@@ -11,6 +11,7 @@
 
 	<modules>
 		<module>filter-interceptor</module>
+		<module>doc-tool</module>
 	</modules>
 
 	<properties>
