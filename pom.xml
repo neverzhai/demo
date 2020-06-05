@@ -12,6 +12,7 @@
 	<modules>
 		<module>filter-interceptor</module>
 		<module>doc-tool</module>
+		<module>excel-example</module>
 	</modules>
 
 	<properties>
