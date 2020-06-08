@@ -22,11 +22,13 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        InterceptorRegistration registrationOne = registry.addInterceptor(interceptorOne);
-        registrationOne.addPathPatterns("/**");
 
         InterceptorRegistration registration = registry.addInterceptor(interceptorTwo);
-        registration.addPathPatterns("/**");
+        registration.addPathPatterns("/**").order(2);
+
+        InterceptorRegistration registrationOne = registry.addInterceptor(interceptorOne);
+        registrationOne.addPathPatterns("/**").order(1);
+
 
     }
 

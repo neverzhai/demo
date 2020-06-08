@@ -6,12 +6,14 @@
  
 https://dzone.com/articles/what-servlet-container
 
+
 在正式的进入Servlet的学习之前, 我们先来了解几个基本名词: Web Server, Web Container, Servlet Container, Servlet.
 
 ### 什么是Web Server
 
+web容器是管理servlet（通过servlet容器），以及监听器(Listener)和过滤器(Filter)的
 
-### 什么是Web Container 
+
 ### (Servlet Container)
 
 ### Web Container 和 Web Server如何处理一个请求

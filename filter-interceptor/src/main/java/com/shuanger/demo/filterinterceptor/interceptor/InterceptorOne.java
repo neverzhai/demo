@@ -1,10 +1,14 @@
 package com.shuanger.demo.filterinterceptor.interceptor;
 
+import com.shuanger.demo.filterinterceptor.service.TestService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,9 +21,19 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class InterceptorOne implements HandlerInterceptor {
 
+    @Resource
+    private TestService testService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("interceptor one pre handle");
+        testService.getName();
+
+//        String token = request.getHeader("token");
+//        if (StringUtils.isEmpty(token)) {
+//            return false;
+//        }
+
         return true;
     }
 
