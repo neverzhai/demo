@@ -1,12 +1,13 @@
 package com.shuanger.doctool.controller;
 
 import com.shuanger.doctool.domain.PostmanItem;
-import com.shuanger.doctool.util.WordUtil;
+import com.shuanger.doctool.service.DocumentToolService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -19,10 +20,13 @@ import java.util.List;
 @RequestMapping("/doc")
 public class DocumentToolController {
 
+    @Resource
+    private DocumentToolService documentToolService;
+
     @RequestMapping("/create")
     public Boolean createDoc(@RequestBody List<PostmanItem> postmanItems) {
 
-        WordUtil.writeWord();
+        documentToolService.createDocx(postmanItems);
         return true;
     }
 }

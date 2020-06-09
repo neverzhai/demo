@@ -12,6 +12,6 @@ public class PostmanRequestBody {
 
     private String mode;
 
-    private String row;
+    private String raw;
 
 }

@@ -12,8 +12,8 @@ public class PostmanRequest {
 
     private String method;
 
-    private PostmanRequestBody requestBody;
+    private PostmanRequestBody body;
 
-    private PostmanRequestUrl requestUrl;
+    private String url;
 
 }
