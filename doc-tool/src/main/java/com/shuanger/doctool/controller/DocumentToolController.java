@@ -1,6 +1,7 @@
 package com.shuanger.doctool.controller;
 
 import com.shuanger.doctool.domain.PostmanItem;
+import com.shuanger.doctool.util.WordUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ public class DocumentToolController {
     @RequestMapping("/create")
     public Boolean createDoc(@RequestBody List<PostmanItem> postmanItems) {
 
+        WordUtil.writeWord();
         return true;
     }
 }
