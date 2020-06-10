@@ -16,7 +16,7 @@ public class PostmanItem {
 
     private PostmanRequest request;
 
-//    private List<PostmanResponse> response;
+    private List<String> response;
 
 
 }
