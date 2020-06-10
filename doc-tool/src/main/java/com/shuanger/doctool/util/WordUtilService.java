@@ -6,6 +6,7 @@ import com.shuanger.doctool.domain.PostmanRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.awt.*;
 
@@ -44,27 +45,29 @@ public class WordUtilService {
     }
 
     public void writeRequest(PostmanRequest postmanRequest) {
-        writer.addText(getContentFont(), "* 请求方式: " + postmanRequest.getMethod());
-        writer.addText(getContentFont(), "* 请求URL: " + postmanRequest.getUrl());
-        writer.addText(getContentFont(), "* 请求入参: ");
+        writer.addText(getContentFont(), " - 请求方式: " + postmanRequest.getMethod());
+        writer.addText(getContentFont(), " - 请求URL: " + postmanRequest.getUrl());
+        writer.addText(getContentFont(), " - 请求入参: ");
 
         String requestBody = postmanRequest.getBody().getRaw();
 
         writeRequestBody(requestBody);
-        writer.addText(getContentFont(), "* 入参说明: ");
-        writer.addText(getContentFont(), "* 请求出参: ");
-        writer.addText(getContentFont(), "* 出参说明: ");
+        writer.addText(getContentFont(), " - 入参说明: ");
+        writer.addText(getContentFont(), " - 请求出参: ");
+        writer.addText(getContentFont(), " - 出参说明: ");
 
     }
 
     private void writeRequestBody(String requestBody) {
         String[] split = requestBody.split("\\,|\\{|\\}");
 
-        writer.addText(getCodeFont(), "{");
-        for (String s : split) {
-            writer.addText(getCodeFont(), s);
+        writer.addText(getCodeFont(), "     {");
+        for (String code : split) {
+            if (!StringUtils.isEmpty(code)) {
+                writer.addText(getCodeFont(),"      " + code);
+            }
         }
-        writer.addText(getCodeFont(), "}");
+        writer.addText(getCodeFont(), "     }");
 
     }
 
@@ -78,7 +81,7 @@ public class WordUtilService {
     }
 
     private Font getCodeFont() {
-        return new Font("Malgun Gothic", Font.PLAIN, 10);
+        return new Font("方正姚体", Font.PLAIN, 10);
     }
 
     private Font getNameFont() {
