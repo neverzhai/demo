@@ -10,5 +10,5 @@ import java.util.List;
  * @description:
  */
 public interface DocumentToolService {
-    void createDocx(List<PostmanItem> postmanItems);
+    void createDocx(List<PostmanItem> postmanItems, String title);
 }

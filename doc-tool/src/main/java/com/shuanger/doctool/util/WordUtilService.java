@@ -1,14 +1,18 @@
 package com.shuanger.doctool.util;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.json.JSONUtil;
 import cn.hutool.poi.word.Word07Writer;
+import com.shuanger.doctool.domain.FormDataBody;
 import com.shuanger.doctool.domain.PostmanRequest;
+import com.shuanger.doctool.domain.PostmanRequestBody;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.awt.*;
+import java.util.List;
 
 
 /**
@@ -44,22 +48,53 @@ public class WordUtilService {
         writer.addText(getNameFont(), ++index  + "." + requestName);
     }
 
-    public void writeRequest(PostmanRequest postmanRequest) {
+    public void writePostRequest(PostmanRequest postmanRequest) {
         writer.addText(getContentFont(), " - 请求方式: " + postmanRequest.getMethod());
-        writer.addText(getContentFont(), " - 请求URL: " + postmanRequest.getUrl());
+        writer.addText(getContentFont(), " - 请求URL: " + postmanRequest.getUrl().getRaw());
+        writer.addText(getContentFont(), " - 请求说明: " + postmanRequest.getBody().getMode());
         writer.addText(getContentFont(), " - 请求入参: ");
 
-        String requestBody = postmanRequest.getBody().getRaw();
+        writeRequestBody(postmanRequest.getBody());
 
-        writeRequestBody(requestBody);
         writer.addText(getContentFont(), " - 入参说明: ");
         writer.addText(getContentFont(), " - 请求出参: ");
         writer.addText(getContentFont(), " - 出参说明: ");
 
     }
 
-    private void writeRequestBody(String requestBody) {
-        String[] split = requestBody.split("\\,|\\{|\\}");
+    public void writeGetRequest(PostmanRequest request) {
+        writer.addText(getContentFont(), " - 请求方式: " + request.getMethod());
+        writer.addText(getContentFont(), " - 请求URL: " + request.getUrl().getRaw());
+
+        writer.addText(getContentFont(), " - 请求入参: 无 ");
+        writer.addText(getContentFont(), " - 请求出参: ");
+        writer.addText(getContentFont(), " - 出参说明: ");
+    }
+
+    private void writeRequestBody(PostmanRequestBody requestBody) {
+
+        switch (requestBody.getMode()) {
+            case "raw":
+                writeJsonBody(requestBody);
+                break;
+            case "formdata":
+                writeFormDataBody(requestBody);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void writeFormDataBody(PostmanRequestBody requestBody) {
+        List<FormDataBody> formdata = requestBody.getFormdata();
+        writer.addText(getCodeFont(), "     [");
+        formdata.forEach(data -> writer.addText(getCodeFont(), "            " + JSONUtil.toJsonStr(data)));
+        writer.addText(getCodeFont(), "     ]");
+    }
+
+    private void writeJsonBody(PostmanRequestBody requestBody) {
+        String jsonString = requestBody.getRaw();
+        String[] split = jsonString.split("\\,|\\{|\\}");
 
         writer.addText(getCodeFont(), "     {");
         for (String code : split) {
@@ -68,11 +103,10 @@ public class WordUtilService {
             }
         }
         writer.addText(getCodeFont(), "     }");
-
     }
 
-    public void flushAndClose() {
-        writer.flush(FileUtil.file("e:/wordWrite1.docx"));
+    public void flushAndClose(String title) {
+        writer.flush(FileUtil.file("e:/" + title + ".docx"));
         writer.close();
     }
 
@@ -90,5 +124,6 @@ public class WordUtilService {
 
     private Font getTitleFont() {
         return new Font("方正小标宋简体", Font.CENTER_BASELINE, 24);
+
     }
 }

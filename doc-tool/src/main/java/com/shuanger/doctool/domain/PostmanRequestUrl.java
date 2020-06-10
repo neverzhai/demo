@@ -10,5 +10,5 @@ import lombok.Data;
 @Data
 public class PostmanRequestUrl {
 
-    private String row;
+    private String raw;
 }

@@ -1,14 +1,14 @@
 package com.shuanger.doctool.controller;
 
-import com.shuanger.doctool.domain.PostmanItem;
+import com.shuanger.doctool.request.CreateDocumentRequest;
 import com.shuanger.doctool.service.DocumentToolService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @author: zhaixiaoshuang
@@ -24,9 +24,9 @@ public class DocumentToolController {
     private DocumentToolService documentToolService;
 
     @RequestMapping("/create")
-    public Boolean createDoc(@RequestBody List<PostmanItem> postmanItems) {
+    public Boolean createDoc(@RequestBody @Validated CreateDocumentRequest request) {
 
-        documentToolService.createDocx(postmanItems);
+        documentToolService.createDocx(request.getItems(), request.getTitle());
         return true;
     }
 }
