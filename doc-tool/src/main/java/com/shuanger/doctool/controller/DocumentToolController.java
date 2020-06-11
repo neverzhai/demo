@@ -26,7 +26,7 @@ public class DocumentToolController {
     @RequestMapping("/create")
     public Boolean createDoc(@RequestBody @Validated CreateDocumentRequest request) {
 
-        documentToolService.createDocx(request.getItems(), request.getTitle());
+        documentToolService.createDocx(request.getItem(), request.getTitle());
         return true;
     }
 }

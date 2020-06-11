@@ -51,12 +51,17 @@ public class WordUtilService {
     public void writePostRequest(PostmanRequest postmanRequest) {
         writer.addText(getContentFont(), " - 请求方式: " + postmanRequest.getMethod());
         writer.addText(getContentFont(), " - 请求URL: " + postmanRequest.getUrl().getRaw());
-        writer.addText(getContentFont(), " - 请求说明: " + postmanRequest.getBody().getMode());
-        writer.addText(getContentFont(), " - 请求入参: ");
 
-        writeRequestBody(postmanRequest.getBody());
+        PostmanRequestBody requestBody = postmanRequest.getBody();
+        if(!StringUtils.isEmpty(requestBody)) {
+            writer.addText(getContentFont(), " - 请求说明: " + requestBody.getMode());
+            writer.addText(getContentFont(), " - 请求入参: ");
 
-        writer.addText(getContentFont(), " - 入参说明: ");
+            writeRequestBody(requestBody);
+
+            writer.addText(getContentFont(), " - 入参说明: ");
+        }
+
         writer.addText(getContentFont(), " - 请求出参: ");
         writer.addText(getContentFont(), " - 出参说明: ");
 

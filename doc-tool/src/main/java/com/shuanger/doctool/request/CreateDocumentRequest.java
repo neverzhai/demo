@@ -15,5 +15,5 @@ public class CreateDocumentRequest {
 
     private String title;
 
-    private List<PostmanItem> items;
+    private List<PostmanItem> item;
 }
