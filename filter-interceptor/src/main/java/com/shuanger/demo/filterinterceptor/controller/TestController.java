@@ -1,8 +1,7 @@
 package com.shuanger.demo.filterinterceptor.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.shuanger.demo.filterinterceptor.request.TestRequest;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author: zhaixiaoshuang
@@ -10,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @description:
  */
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/filter")
 public class TestController {
 
-    @GetMapping
-    public String test() {
-        return "hello world";
+    @PostMapping("/test")
+    public String test(@RequestBody TestRequest request) {
+        return request.getCode();
     }
 }
