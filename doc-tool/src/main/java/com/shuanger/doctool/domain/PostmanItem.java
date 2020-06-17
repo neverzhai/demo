@@ -18,5 +18,4 @@ public class PostmanItem {
 
     private List<String> response;
 
-
 }
