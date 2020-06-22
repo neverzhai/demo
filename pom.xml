@@ -13,6 +13,7 @@
 		<module>filter-interceptor</module>
 		<module>doc-tool</module>
 		<module>excel-example</module>
+		<module>wechat</module>
 	</modules>
 
 	<properties>

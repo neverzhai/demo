@@ -2,6 +2,7 @@ package com.shuanger.doctool.controller;
 
 import com.shuanger.doctool.request.CreateDocumentRequest;
 import com.shuanger.doctool.service.DocumentToolService;
+import com.shuanger.doctool.service.POIDocumentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,10 +24,19 @@ public class DocumentToolController {
     @Resource
     private DocumentToolService documentToolService;
 
+    @Resource
+    private POIDocumentService poiDocumentService;
+
     @RequestMapping("/create")
     public Boolean createDoc(@RequestBody @Validated CreateDocumentRequest request) {
 
         documentToolService.createDocx(request.getItem(), request.getTitle());
         return true;
+    }
+
+
+    @RequestMapping("/poi/test")
+    public void writeTOC() throws Exception {
+        poiDocumentService.writeTOC();
     }
 }
