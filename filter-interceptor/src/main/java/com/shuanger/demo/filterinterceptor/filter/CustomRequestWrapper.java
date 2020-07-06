@@ -19,21 +19,21 @@ public class CustomRequestWrapper extends HttpServletRequestWrapper {
         String strFromInputStream = getContentFromServletRequest();
     }
 
-    @Override
-    public BufferedReader getReader() throws IOException {
-        BufferedReader br;
-//        String decodeJson = decode();
-//        br = new BufferedReader(new InputStreamReader(new CustomServletInputStream(decodeJson)));
+//    @Override
+//    public BufferedReader getReader() throws IOException {
+//        BufferedReader br;
+////        String decodeJson = decode();
+////        br = new BufferedReader(new InputStreamReader(new CustomServletInputStream(decodeJson)));
 //        return br;
-    }
+//    }
 
-    @Override
-    public ServletInputStream getInputStream() throws IOException {
-        ServletInputStream inputStream;
-//        String decodeJson = decode();
-//        inputStream = new CustomServletInputStream(decodeJson);
-//        return inputStream;
-    }
+//    @Override
+//    public ServletInputStream getInputStream() throws IOException {
+//        ServletInputStream inputStream;
+////        String decodeJson = decode();
+////        inputStream = new CustomServletInputStream(decodeJson);
+////        return inputStream;
+//    }
 
 
     /**
