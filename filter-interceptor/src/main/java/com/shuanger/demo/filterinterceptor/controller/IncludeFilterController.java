@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
  * @description:
  */
 @RestController
-@RequestMapping("/filter")
-public class TestController {
+@RequestMapping("/include/filter")
+public class IncludeFilterController {
 
     @PostMapping("/test")
     public String test(@RequestBody TestRequest request) {

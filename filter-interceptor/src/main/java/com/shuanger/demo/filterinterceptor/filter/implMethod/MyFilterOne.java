@@ -1,8 +1,4 @@
-package com.shuanger.demo.filterinterceptor.filter;
-
-
-import com.shuanger.demo.filterinterceptor.filter.wrapper.CustomRequestWrapper;
-import lombok.extern.slf4j.Slf4j;
+package com.shuanger.demo.filterinterceptor.filter.implMethod;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -14,19 +10,14 @@ import java.io.IOException;
 
 /**
  * @author: zhaixiaoshuang
- * @date: 2020-06-11 17:41
- * @description: 第一个Filter
+ * @date: 2020-06-28 20:12
+ * @description:
  */
-@Slf4j
-@WebFilter(urlPatterns = "/include/*")
-public class FilterOne extends HttpFilter {
+@WebFilter(urlPatterns = "/filter/*")
+public class MyFilterOne extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-
-        log.info("do filter----------------- filter one");
-
-        request.getReader();
-        chain.doFilter(request, response);
+        super.doFilter(request, response, chain);
     }
 }
