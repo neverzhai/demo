@@ -1,0 +1,61 @@
+public static String uploadFile(CommonsMultipartFile upfile) throws Exception {
+
+		MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
+	//	param.add("params", "params");
+
+		FileUtils.writeByteArrayToFile(new File(upfile.getOriginalFilename()), upfile.getBytes());
+		FileSystemResource fileResource = new FileSystemResource(new File(upfile.getOriginalFilename()));
+		param.add("image", fileResource);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Accept", MediaType.APPLICATION_JSON.toString());
+		headers.setContentType(MediaType.parseMediaType("multipart/form-data; charset=UTF-8"));
+
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<MultiValueMap<String, Object>>(param,
+				headers);
+		ResponseEntity<Map> result = restTemplate.postForEntity(url, requestEntity, Map.class);
+		Map<String, Object> body = result.getBody();
+		Object isSuccess = body.get("success");
+		String isSuccessString = String.valueOf(isSuccess);
+		String returnUrlString = "";
+		if ("true".equals(isSuccessString)) {
+			returnUrlString = (String) body.get("url");
+		} else {
+			returnUrlString=null;
+		}
+		return returnUrlString;
+	}
+
+}
+ RestTemplate可以注入的方法
+
+此处参考：https://blog.csdn.net/qq_35981283/article/details/82056285
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
+
+
+@Configuration
+public class RestTemplateConfig {
+//	@Bean
+//	public RestTemplate restTemplate() {
+//		RestTemplate restTemplate = new RestTemplate();
+//		return restTemplate;
+//	}
+	@Bean
+    public RestTemplate restTemplate(){
+        RestTemplate restTemplate = new RestTemplate(new SimpleClientHttpRequestFactory());
+        return restTemplate;
+    }
+}
+ 嗯，代码基本上就是这样了，欢迎提问，互相学习
+————————————————
+版权声明：本文为CSDN博主「luo_yu_1106」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/luo_yu_1106/java/article/details/89570994
+
+https://blog.csdn.net/luo_yu_1106/article/details/89570994?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.compare&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.compare
+
+
+
