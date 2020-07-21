@@ -18,7 +18,7 @@ import java.io.IOException;
  * @description: 第一个Filter
  */
 @Slf4j
-@WebFilter(urlPatterns = "/include/*")
+//@WebFilter(urlPatterns = "/include/*")
 public class FilterOne extends HttpFilter {
 
     @Override

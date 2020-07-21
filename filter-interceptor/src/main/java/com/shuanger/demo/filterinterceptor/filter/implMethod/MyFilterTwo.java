@@ -21,7 +21,7 @@ public class MyFilterTwo extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        log.info("filter two, implemented with @Component");
+        log.info("---------------filter two, implemented with @Component");
 
         chain.doFilter(request, response);
     }

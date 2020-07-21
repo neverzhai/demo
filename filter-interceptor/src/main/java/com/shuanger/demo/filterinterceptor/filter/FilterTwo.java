@@ -13,7 +13,7 @@ import java.io.IOException;
  * @description:
  */
 @Slf4j
-@Component
+//@Component
 public class FilterTwo extends HttpFilter {
 
     @Override
