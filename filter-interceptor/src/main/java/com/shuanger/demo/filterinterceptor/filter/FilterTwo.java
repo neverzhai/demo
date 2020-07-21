@@ -1,9 +1,10 @@
 package com.shuanger.demo.filterinterceptor.filter;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpFilter;
 import java.io.IOException;
 
 /**
@@ -12,7 +13,8 @@ import java.io.IOException;
  * @description:
  */
 @Slf4j
-public class FilterTwo implements Filter {
+@Component
+public class FilterTwo extends HttpFilter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

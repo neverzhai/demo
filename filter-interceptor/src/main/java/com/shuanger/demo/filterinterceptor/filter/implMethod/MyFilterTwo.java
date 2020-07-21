@@ -1,5 +1,6 @@
 package com.shuanger.demo.filterinterceptor.filter.implMethod;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.FilterChain;
@@ -14,11 +15,14 @@ import java.io.IOException;
  * @date: 2020-06-28 20:29
  * @description:
  */
+@Slf4j
 @Component
 public class MyFilterTwo extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        super.doFilter(request, response, chain);
+        log.info("filter two, implemented with @Component");
+
+        chain.doFilter(request, response);
     }
 }

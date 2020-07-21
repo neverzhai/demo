@@ -21,6 +21,8 @@ public class MyFilterOne extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        log.info("");
+        log.info("filter one, implemented with @WebFiler");
+
+        chain.doFilter(request, response);
     }
 }
