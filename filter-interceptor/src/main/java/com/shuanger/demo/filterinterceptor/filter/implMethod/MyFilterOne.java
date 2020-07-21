@@ -1,7 +1,9 @@
 package com.shuanger.demo.filterinterceptor.filter.implMethod;
 
+import com.shuanger.demo.filterinterceptor.service.TestService;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebFilter;
@@ -19,10 +21,15 @@ import java.io.IOException;
 @WebFilter(urlPatterns = "/include/filter/*")
 public class MyFilterOne extends HttpFilter {
 
+    @Resource
+    private TestService testService;
+
     @Override
-    protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+    protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         log.info("---------------filter one, implemented with @WebFiler");
 
+        log.info("===== call test service: {}", testService.getName());
         chain.doFilter(request, response);
     }
 }

@@ -1,8 +1,10 @@
 package com.shuanger.demo.filterinterceptor.filter.implMethod;
 
+import com.shuanger.demo.filterinterceptor.service.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpFilter;
@@ -19,10 +21,14 @@ import java.io.IOException;
 @Component
 public class MyFilterTwo extends HttpFilter {
 
+    @Resource
+    private TestService testService;
+
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         log.info("---------------filter two, implemented with @Component");
 
+        log.info("===== call test service: {}", testService.getName());
         chain.doFilter(request, response);
     }
 }

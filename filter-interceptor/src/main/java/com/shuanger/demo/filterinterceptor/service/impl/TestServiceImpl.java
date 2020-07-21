@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class TestServiceImpl implements TestService {
 
     @Override
-    public void getName() {
-        log.info("this is a test method");
+    public String getName() {
+       return "test Service";
     }
 }
