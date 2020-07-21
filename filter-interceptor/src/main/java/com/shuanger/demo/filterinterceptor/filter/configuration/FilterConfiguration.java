@@ -18,6 +18,7 @@ public class FilterConfiguration {
 
         bean.setFilter(new MyFilterThree());
         bean.addUrlPatterns("/include/filter/*");  // or use setUrlPatterns()
+        bean.setOrder(1);
 
         return bean;
     }
