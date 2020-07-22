@@ -1,5 +1,8 @@
 package com.shuanger.demo.filterinterceptor.filter.implMethod;
 
+import com.shuanger.demo.filterinterceptor.response.BuildResponseUtil;
+import com.shuanger.demo.filterinterceptor.response.BusinessException;
+import com.shuanger.demo.filterinterceptor.response.RespCode;
 import com.shuanger.demo.filterinterceptor.service.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
@@ -31,6 +34,9 @@ public class MyFilterTwo extends HttpFilter {
         log.info("---------------filter two, implemented with @Component");
 
 //        log.info("===== call test service: {}", testService.getName());
+        if(true) {
+            BuildResponseUtil.buildResponse(response, RespCode.FAILED);
+        }
         chain.doFilter(request, response);
     }
 }
