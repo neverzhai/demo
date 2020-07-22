@@ -7,3 +7,10 @@ list.stream().sorted(Comparator.comparing(Student::getAge).reversed());
 ```
 
 ## GroupingBy
+
+
+## 排序
+
+            LinkedHashMap<String, String> sortedMap = parameterMap.entrySet().stream().sorted(Map.Entry.comparingByKey())
+                    .collect(Collectors.toMap(Map.Entry::getKey, e->StringUtils.join(e.getValue()),
+                            (oldKey, newKey) -> oldKey, LinkedHashMap::new));
