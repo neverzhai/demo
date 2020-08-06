@@ -17,7 +17,27 @@ https://zhuanlan.zhihu.com/p/87382038
 ## BeanFactory
 ## ApplicationContext
 
+了。对于上下文抽象接口，Spring也为我们提供了多种类型的容器实现，供我们在不同的应用场景选择——
 
+　　　 ① AnnotationConfigApplicationContext:从一个或多个基于java的配置类中加载上下文定义，适用于java注解的方式；
+
+　　　　② ClassPathXmlApplicationContext:从类路径下的一个或多个xml配置文件中加载上下文定义，适用于xml配置的方式；
+
+　　　　③ FileSystemXmlApplicationContext:从文件系统下的一个或多个xml配置文件中加载上下文定义，也就是说系统盘符中加载xml配置文件；
+
+　　　　④ AnnotationConfigWebApplicationContext:专门为web应用准备的，适用于注解方式；
+
+　　　　⑤ XmlWebApplicationContext:从web应用下的一个或多个xml配置文件加载上下文定义，适用于xml配置方式。
 
 Spring boot如何简化Spring配置
 https://cloud.tencent.com/developer/article/1469427
+
+https://blog.csdn.net/qq_40151840/article/details/104406031
+
+## Bean 生命周期
+- 创建
+- 装配
+- 销毁
+
+https://www.cnblogs.com/chenbenbuyi/p/8166304.html
+https://www.cnblogs.com/chenbenbuyi/p/8166304.html
