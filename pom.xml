@@ -16,6 +16,7 @@
 		<module>wechat</module>
 		<module>request-response</module>
 		<module>restTemplate-demo</module>
+		<module>interceptor</module>
 	</modules>
 
 	<properties>
