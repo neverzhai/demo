@@ -17,6 +17,7 @@
 		<module>request-response</module>
 		<module>restTemplate-demo</module>
 		<module>interceptor</module>
+		<module>java-date</module>
 	</modules>
 
 	<properties>
