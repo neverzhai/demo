@@ -31,7 +31,12 @@ jdbc:mysql://xxxx:3306/db_name?useUnicode=true&characterEncoding=UTF-8&allowMult
 改动后:
 ```java
 jdbc:mysql://xxxx:3306/db_name?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
-```
+``` 
+
+于是我怀疑是因为去掉了这个serverTimeZone导致的, 于是我把这个设置又加上去重新实验了一次, 果然时间相关的显示都正确了.
+但是优秀的我怎么会止步于问题得到解决呢, 我必须要探究一下背后的原因呀.serverTimezone的作用什么? 如果我不设置还可以通过什么方式解决这个问题?
+为什么使用@JsonFormat注解指定timezone不好用? 时间处理相关的最佳实践到底是什么? 带着这些疑问, 我开始了关于时间的探索, 并将其记录下来已避免自己再犯
+同样的错误.
 
 数据库使用的timezone图片
 
