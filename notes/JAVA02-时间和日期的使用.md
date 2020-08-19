@@ -38,6 +38,20 @@ jdbc:mysql://xxxx:3306/db_name?useUnicode=true&characterEncoding=UTF-8&allowMult
 为什么使用@JsonFormat注解指定timezone不好用? 时间处理相关的最佳实践到底是什么? 带着这些疑问, 我开始了关于时间的探索, 并将其记录下来已避免自己再犯
 同样的错误.
 
+
+```sql
+CREATE TABLE `activity_info`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID自增',
+  `activity_name` varchar(64) NOT NULL COMMENT '活动名称',       
+  `activity_desc` varchar(128) NOT NULL COMMENT '活动描述',
+  `star_time` datetime NOT NULL COMMENT '活动起始时间',
+  `end_time` datetime NOT NULL COMMENT '活动结束时间',
+  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '0：未删除 1：已删除',
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '活动信息表' ROW_FORMAT = Dynamic;
+```
 数据库使用的timezone图片
 
 
