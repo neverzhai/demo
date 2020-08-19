@@ -44,7 +44,7 @@ CREATE TABLE `activity_info`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID自增',
   `activity_name` varchar(64) NOT NULL COMMENT '活动名称',       
   `activity_desc` varchar(128) NOT NULL COMMENT '活动描述',
-  `star_time` datetime NOT NULL COMMENT '活动起始时间',
+  `start_time` datetime NOT NULL COMMENT '活动起始时间',
   `end_time` datetime NOT NULL COMMENT '活动结束时间',
   `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '0：未删除 1：已删除',
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -54,7 +54,37 @@ CREATE TABLE `activity_info`  (
 ```
 数据库使用的timezone图片
 
+mysql> show variables like '%time_zone%';
++------------------+--------+
+| Variable_name | Value |
++------------------+--------+
+| system_time_zone | EDT |
+| time_zone  | SYSTEM |
++------------------+--------+
+2 rows in set (0.00 sec)
+system_time_zone 表示系统使用的时区是 EDT即北美的东部夏令时(-4h)。
+time_zone 表示 MySQL 采用的是系统的时区。也就是说，如果在连接时没有设置时区信息，就会采用这个时区配置
 
+
+## Mysql time_zone and system_time_zone
+参考文档: https://www.cnblogs.com/gaogao67/p/10686515.html
+全局参数time_zone
+
+用来设置每个连接会话的时区，默认为system时，使用全局参数system_time_zone的值。
+
+The current time zone. This variable is used to initialize the time zone for each client that connects. By default, the initial value of this is 'SYSTEM' (which means, “use the value of system_time_zone”).
+
+如何修改timezone呢  ?????
+ 
+全局参数system_time_zone
+系统时区，在MySQL启动时会检查当前系统的时区并根据系统时区设置全局参数system_time_zone的值。
+
+The system time zone. When the server starts, it attempts to determine the time zone of the host machine automatically and uses it to set thesystem_time_zone system variable. The value does not change thereafter.
+ 
+如何在启动MySQL时指定system_time_zone呢?????
+
+### serverTimeZone 的作用
+serverTimeZone的作用就是指定web服务器和mysql服务器的会话期间的mysql服务器时区，就是临时指定mysql服务器的时区。
 
 ### 疑问
 
