@@ -2,7 +2,7 @@ package com.shuanger.javadate.controller;
 
 import com.shuanger.javadate.domain.ActivityInfo;
 import com.shuanger.javadate.requests.CreateActivityRequest;
-import com.shuanger.javadate.requests.QueryActivityRequest;
+import com.shuanger.javadate.requests.QueryByIdRequest;
 import com.shuanger.javadate.service.ActivityInfoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -39,7 +39,7 @@ public class ActivityInfoController {
     @RequestMapping("/queryById")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public ActivityInfo queryById(@RequestBody @Validated QueryActivityRequest request) {
+    public ActivityInfo queryById(@RequestBody @Validated QueryByIdRequest request) {
 
         ActivityInfo activityInfo = activityInfoService.getById(request.getId());
 

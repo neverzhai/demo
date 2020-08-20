@@ -8,7 +8,7 @@ import lombok.Data;
  * @description:
  */
 @Data
-public class QueryActivityRequest {
+public class QueryByIdRequest {
 
     private Long id;
 }
