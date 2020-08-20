@@ -3,6 +3,7 @@ package com.shuanger.javadate.domain;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
 

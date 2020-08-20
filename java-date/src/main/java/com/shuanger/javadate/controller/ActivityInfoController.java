@@ -1,11 +1,14 @@
 package com.shuanger.javadate.controller;
 
 import com.shuanger.javadate.domain.ActivityInfo;
+import com.shuanger.javadate.domain.UserInfo;
 import com.shuanger.javadate.requests.CreateActivityRequest;
 import com.shuanger.javadate.requests.QueryByIdRequest;
+import com.shuanger.javadate.requests.UpdateUserInfoRequest;
 import com.shuanger.javadate.service.ActivityInfoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +20,6 @@ import javax.annotation.Resource;
  * @description: 活动信息controller
  */
 @RestController
-@ResponseBody
 @RequestMapping("/date/activity")
 public class ActivityInfoController {
 
@@ -25,8 +27,6 @@ public class ActivityInfoController {
     private ActivityInfoService activityInfoService;
 
     @RequestMapping("/save")
-    @ResponseBody
-    @ResponseStatus(HttpStatus.CREATED)
     public boolean createActivity(@RequestBody @Validated CreateActivityRequest request) {
 
         ActivityInfo activityInfo = new ActivityInfo();
@@ -37,12 +37,22 @@ public class ActivityInfoController {
     }
 
     @RequestMapping("/queryById")
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     public ActivityInfo queryById(@RequestBody @Validated QueryByIdRequest request) {
 
         ActivityInfo activityInfo = activityInfoService.getById(request.getId());
 
         return activityInfo;
+    }
+
+    @RequestMapping("/update")
+    public boolean updateActivityInfo(@RequestBody @Validated UpdateUserInfoRequest request) {
+
+        ActivityInfo activityInfo = activityInfoService.getById(request.getId());
+        Assert.notNull(activityInfo, "编辑的信息不存在");
+
+        BeanUtils.copyProperties(request, activityInfo);
+        boolean success = activityInfoService.updateById(activityInfo);
+
+        return success;
     }
 }

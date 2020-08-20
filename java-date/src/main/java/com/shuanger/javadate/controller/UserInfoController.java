@@ -8,6 +8,7 @@ import com.shuanger.javadate.service.UserInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +30,6 @@ public class UserInfoController {
     private UserInfoService userInfoService;
 
     @RequestMapping("/save")
-    @ResponseBody
-    @ResponseStatus(HttpStatus.CREATED)
     public boolean createUserInfo(@RequestBody @Validated CreatUserInfoRequest request) {
 
         UserInfo userInfo = new UserInfo();
@@ -41,8 +40,6 @@ public class UserInfoController {
     }
 
     @RequestMapping("/queryById")
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     public UserInfo queryById(@RequestBody @Validated QueryByIdRequest request) {
 
         UserInfo userInfo = userInfoService.getById(request.getId());
@@ -51,8 +48,6 @@ public class UserInfoController {
     }
 
     @RequestMapping("/update")
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     public boolean updateUserInfo(@RequestBody @Validated UpdateUserInfoRequest request) {
 
         UserInfo userInfo = userInfoService.getById(request.getId());
@@ -63,6 +58,4 @@ public class UserInfoController {
 
         return success;
     }
-
-
 }
