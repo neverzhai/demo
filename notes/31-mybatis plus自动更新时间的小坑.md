@@ -6,6 +6,8 @@ https://blog.csdn.net/sgambler/article/details/103488278?utm_medium=distribute.p
 ### Sql 和Java的时间对应关系
 
 ## 描述问题
+昨天测试又给我提了一个bug(我怎么觉得自己是个被bug驱动的渣渣程序员),说他更新了某条数据, 但是这调数据的更新时间没有变化. 我的第一反映是怎么可能,
+
 
 ### 设计如下的数据库表结构
 ```sql

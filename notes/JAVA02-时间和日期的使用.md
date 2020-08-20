@@ -76,6 +76,9 @@ system_time_zone 表示系统使用的时区是 EDT即北美的东部夏令时(-
 time_zone 表示 MySQL 采用的是系统的时区。也就是说，如果在连接时没有设置时区信息，就会采用这个时区配置
 
 
+https://blog.csdn.net/qq_30553235/article/details/79612824
+
+
 ## Mysql time_zone and system_time_zone
 参考文档: https://www.cnblogs.com/gaogao67/p/10686515.html
 全局参数time_zone
