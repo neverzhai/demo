@@ -1,5 +1,6 @@
 package com.shuanger.javadate.controller;
 
+import com.shuanger.javadate.dao.UserInfoMapper;
 import com.shuanger.javadate.domain.UserInfo;
 import com.shuanger.javadate.requests.CreatUserInfoRequest;
 import com.shuanger.javadate.requests.QueryByIdRequest;
@@ -29,6 +30,7 @@ public class UserInfoController {
     @Resource
     private UserInfoService userInfoService;
 
+
     @RequestMapping("/save")
     public boolean createUserInfo(@RequestBody @Validated CreatUserInfoRequest request) {
 
@@ -47,20 +49,21 @@ public class UserInfoController {
         return userInfo;
     }
 
-    @RequestMapping("/update1")
-    public boolean updateUserInfo1(@RequestBody @Validated UpdateUserInfoRequest request) {
+    @RequestMapping("/update")
+    public boolean updateUserInfo(@RequestBody @Validated UpdateUserInfoRequest request) {
 
         UserInfo userInfo = userInfoService.getById(request.getId());
         Assert.notNull(userInfo, "编辑的信息不存在");
 
         BeanUtils.copyProperties(request, userInfo);
+
         boolean success = userInfoService.updateById(userInfo);
 
         return success;
     }
 
-    @RequestMapping("/update")
-    public boolean updateUserInfo(@RequestBody @Validated UpdateUserInfoRequest request) {
+    @RequestMapping("/update1")
+    public boolean updateUserInfo2(@RequestBody @Validated UpdateUserInfoRequest request) {
 
         UserInfo userInfo = new UserInfo();
 
