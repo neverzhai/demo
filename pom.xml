@@ -18,6 +18,7 @@
 		<module>restTemplate-demo</module>
 		<module>interceptor</module>
 		<module>java-date</module>
+		<module>transactional-return</module>
 	</modules>
 
 	<properties>
