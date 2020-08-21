@@ -87,4 +87,28 @@ public class AsyncTestController {
             }
         };
     }
+
+
+    @RequestMapping("/")
+    @ResponseBody
+    public Callable<String> handleTestRequest () {
+
+        System.out.println("controller#handler called. Thread: " +
+                Thread.currentThread()
+                        .getName());
+
+        Callable<String> callable = new Callable<String>() {
+            public String call () throws Exception {
+                System.out.println("controller#async task started. Thread: " +
+                        Thread.currentThread()
+                                .getName());
+                Thread.sleep(300);
+                System.out.println("controller#async task finished");
+                return "async result";
+            }
+        };
+
+        System.out.println("controller#handler finished");
+        return callable;
+    }
 }
