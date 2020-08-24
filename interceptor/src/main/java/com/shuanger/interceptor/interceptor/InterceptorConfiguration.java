@@ -17,14 +17,15 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 
     @Resource
     private InterceptorOne interceptorOne;
+
     @Resource
     private InterceptorTwo interceptorTwo;
 
     public void addInterceptors(InterceptorRegistry registry) {
-
-        InterceptorRegistration registration = registry.addInterceptor(interceptorTwo);
-        registration.addPathPatterns("/**")
-                .order(2);
+//
+//        InterceptorRegistration registration = registry.addInterceptor(interceptorTwo);
+//        registration.addPathPatterns("/**")
+//                .order(2);
 
         InterceptorRegistration registrationOne = registry.addInterceptor(interceptorOne);
         registrationOne.addPathPatterns("/**")

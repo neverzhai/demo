@@ -1,6 +1,7 @@
 package com.shuanger.interceptor.interceptor;//package com.shuanger.demo.filterinterceptor.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * @description:
  */
 @Slf4j
+@Component
 public class InterceptorTwo extends HandlerInterceptorAdapter {
 
         @Override

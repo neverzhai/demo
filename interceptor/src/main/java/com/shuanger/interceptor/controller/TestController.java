@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description:
  */
 @RestController
-@RequestMapping("/include/filter")
+@RequestMapping("/interceptor")
 public class TestController {
 
     @PostMapping("/test")
