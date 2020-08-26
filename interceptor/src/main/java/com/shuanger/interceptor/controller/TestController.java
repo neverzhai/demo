@@ -3,6 +3,7 @@ package com.shuanger.interceptor.controller;
 import com.shuanger.interceptor.request.TestRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.concurrent.Callable;
 
@@ -25,7 +26,7 @@ public class TestController {
 
     @RequestMapping("/async/test")
     @ResponseBody
-    public Callable<String> handleTestRequest () {
+    public Callable<String> handleTestRequest1 () {
 
         log.info("controller#handler called. Thread: " +
                 Thread.currentThread()
@@ -44,5 +45,29 @@ public class TestController {
 
         log.info("controller#handler finished");
         return callable;
+    }
+
+
+    @RequestMapping("/test/test")
+    public DeferredResult<String> handleTestRequest() {
+
+        log.info("handler started");
+        final DeferredResult<String> deferredResult = new DeferredResult<>();
+
+        new Thread(new Runnable() {
+            public void run() {
+            log.info("async task started");
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            log.info("async task finished");
+                deferredResult.setResult("test async result");
+            }
+        }).start();
+
+        log.info("handler finished");
+        return deferredResult;
     }
 }
