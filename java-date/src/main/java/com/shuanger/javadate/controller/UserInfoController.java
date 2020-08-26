@@ -6,7 +6,9 @@ import com.shuanger.javadate.requests.CreatUserInfoRequest;
 import com.shuanger.javadate.requests.QueryByIdRequest;
 import com.shuanger.javadate.requests.UpdateUserInfoRequest;
 import com.shuanger.javadate.service.UserInfoService;
+import com.shuanger.javadate.utils.ExcelWriteUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author: zhaixiaoshuang
@@ -71,5 +74,17 @@ public class UserInfoController {
         boolean success = userInfoService.updateById(userInfo);
 
         return success;
+    }
+
+    @RequestMapping("/export")
+    public void export(HttpServletResponse response) {
+        Workbook workbook = userInfoService.exportList();
+
+        try {
+            ExcelWriteUtil.export(response, workbook, "用户信息列表");
+        } catch (Exception e) {
+            log.error("导出用户信息列表异常: {}", e.getMessage());
+        }
+
     }
 }

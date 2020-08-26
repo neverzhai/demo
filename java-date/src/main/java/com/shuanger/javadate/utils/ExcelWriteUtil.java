@@ -10,11 +10,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 
-/**
- * @author: zhaixiaoshuang
- * @date: 2020-02-06 22:41
- * @description: util
- */
 @Slf4j
 public class ExcelWriteUtil {
 
@@ -49,24 +44,24 @@ public class ExcelWriteUtil {
     }
 
 
-    public static SXSSFWorkbook writeRowAndCell(SXSSFWorkbook wb, String values,int rowIndex, int columnIndex, int sheetIndex) {
-
-        CellStyle cellStyle = wb.createCellStyle();
-        Font font = wb.createFont();
-        font.setColor(IndexedColors.RED.getIndex());
-        cellStyle.setFont(font);
-        cellStyle.setAlignment(HorizontalAlignment.LEFT);
-
-        Sheet sheet = wb.getSheetAt(sheetIndex);
-        sheet.setColumnWidth(columnIndex, 100 * 256);
-        Row row = sheet.getRow(rowIndex);
-        row.setHeightInPoints((short) 100);
-        Cell cell1 = row.createCell(columnIndex);
-        cell1.setCellValue(values);
-        cell1.setCellStyle(cellStyle);
-
-        return wb;
-    }
+//    public static SXSSFWorkbook writeRowAndCell(SXSSFWorkbook wb, String values,int rowIndex, int columnIndex, int sheetIndex) {
+//
+//        CellStyle cellStyle = wb.createCellStyle();
+//        Font font = wb.createFont();
+//        font.setColor(IndexedColors.RED.getIndex());
+//        cellStyle.setFont(font);
+//        cellStyle.setAlignment(HorizontalAlignment.LEFT);
+//
+//        Sheet sheet = wb.getSheetAt(sheetIndex);
+//        sheet.setColumnWidth(columnIndex, 100 * 256);
+//        Row row = sheet.getRow(rowIndex);
+//        row.setHeightInPoints((short) 100);
+//        Cell cell1 = row.createCell(columnIndex);
+//        cell1.setCellValue(values);
+//        cell1.setCellStyle(cellStyle);
+//
+//        return wb;
+//    }
 
     public static SXSSFWorkbook writeContent(SXSSFWorkbook wb, String[][] values, int sheetIndex) {
         Sheet sheet = wb.getSheetAt(sheetIndex);

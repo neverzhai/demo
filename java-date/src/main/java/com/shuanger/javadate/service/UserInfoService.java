@@ -2,6 +2,7 @@ package com.shuanger.javadate.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.shuanger.javadate.domain.UserInfo;
+import org.apache.poi.ss.usermodel.Workbook;
 
 /**
  * @author: zhaixiaoshuang
@@ -9,4 +10,5 @@ import com.shuanger.javadate.domain.UserInfo;
  * @description:
  */
 public interface UserInfoService extends IService<UserInfo> {
+    Workbook exportList();
 }
