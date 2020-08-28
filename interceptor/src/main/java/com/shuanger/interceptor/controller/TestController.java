@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.concurrent.Callable;
 
 /**
@@ -26,7 +28,7 @@ public class TestController {
 
     @RequestMapping("/async/test")
     @ResponseBody
-    public Callable<String> handleTestRequest1 () {
+    public Callable<String> handleTestRequest1 (HttpServletResponse response) {
 
         log.info("controller#handler called. Thread: " +
                 Thread.currentThread()
@@ -35,9 +37,10 @@ public class TestController {
         Callable<String> callable = new Callable<String>() {
             public String call () throws Exception {
                 log.info("controller#async task started. Thread: " +
-                        Thread.currentThread()
-                                .getName());
+                        Thread.currentThread() .getName());
+
                 Thread.sleep(300);
+
                 log.info("controller#async task finished");
                 return "async result";
             }

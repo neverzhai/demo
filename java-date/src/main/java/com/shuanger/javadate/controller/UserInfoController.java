@@ -14,10 +14,12 @@ import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.util.concurrent.Callable;
 
 /**
  * @author: zhaixiaoshuang
@@ -87,4 +89,22 @@ public class UserInfoController {
         }
 
     }
+
+    @RequestMapping("/async/test")
+    public Callable<String> handleTestRequest1 (HttpServletResponse response) {
+
+        Callable<String> callable = () -> {
+            Workbook workbook = userInfoService.exportList();
+
+            try {
+                ExcelWriteUtil.export(response, workbook, "用户信息列表");
+            } catch (Exception e) {
+                log.error("异步导出用户信息列表异常: {}", e.getMessage());
+            }
+
+            return "async result";
+        };
+        return callable;
+    }
+
 }
