@@ -10,8 +10,10 @@ import com.shuanger.javadate.utils.ExcelWriteUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -25,6 +27,29 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
     @Override
     public Workbook exportList() {
+        SXSSFWorkbook workbook = exportListInternally();
+
+        return workbook;
+    }
+
+    @Override
+    @Async
+    public Workbook exportAsyncList(HttpServletResponse response) {
+        log.info("异步调用导出用户信息");
+
+        SXSSFWorkbook workbook = exportListInternally();
+
+        try {
+            ExcelWriteUtil.export(response, workbook, "用户信息列表");
+        } catch (Exception e) {
+            log.error("异步导出用户信息列表异常: {}", e.getMessage());
+        }
+
+        return workbook;
+
+    }
+
+    private SXSSFWorkbook exportListInternally() {
         SXSSFWorkbook workbook = ExcelWriteUtil.createWorkbook("用户信息");
 
         String[] title = {"userId", "username", "mobile"};
@@ -36,16 +61,15 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         List<UserInfo> userInfos = list(wrapper);
         String[][] content = new String[userInfos.size()][title.length];
 
-        for (int rowIndex = 0; rowIndex < userInfos.size(); rowIndex++){
+        for (int rowIndex = 0; rowIndex < userInfos.size(); rowIndex++) {
             int columnIndex = 0;
             UserInfo userInfo = userInfos.get(rowIndex);
-            content[rowIndex][columnIndex++] = String .valueOf(userInfo.getId());
+            content[rowIndex][columnIndex++] = String.valueOf(userInfo.getId());
             content[rowIndex][columnIndex++] = userInfo.getUsername();
             content[rowIndex][columnIndex++] = userInfo.getMobile();
         }
 
         ExcelWriteUtil.writeContent(workbook, content, 0);
-
         return workbook;
     }
 }

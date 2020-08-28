@@ -107,4 +107,13 @@ public class UserInfoController {
         return callable;
     }
 
+
+    @RequestMapping("/async/export")
+    public String asyncExportUserInfo (HttpServletResponse response) {
+
+        Workbook workbook = userInfoService.exportAsyncList(response);
+
+        return "async export result";
+    }
+
 }
