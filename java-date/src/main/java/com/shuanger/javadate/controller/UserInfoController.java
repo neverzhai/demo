@@ -1,6 +1,5 @@
 package com.shuanger.javadate.controller;
 
-import com.shuanger.javadate.dao.UserInfoMapper;
 import com.shuanger.javadate.domain.UserInfo;
 import com.shuanger.javadate.requests.CreatUserInfoRequest;
 import com.shuanger.javadate.requests.QueryByIdRequest;
@@ -14,7 +13,6 @@ import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -90,6 +88,8 @@ public class UserInfoController {
 
     }
 
+    // 这个方法, 如果文件很大的话, 会怎样呢
+    // 理论上还是会等等接口的返回的, 哪前端的连接会超时吗, 但是应该不会影响别的请求
     @RequestMapping("/async/test")
     public Callable<String> handleTestRequest1 (HttpServletResponse response) {
 
@@ -108,6 +108,7 @@ public class UserInfoController {
     }
 
 
+    // note: this method does not work
     @RequestMapping("/async/export")
     public String asyncExportUserInfo (HttpServletResponse response) {
 

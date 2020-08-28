@@ -32,6 +32,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         return workbook;
     }
 
+    // 这个方法是不行的呀
     @Override
     @Async
     public Workbook exportAsyncList(HttpServletResponse response) {
@@ -42,7 +43,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         try {
             ExcelWriteUtil.export(response, workbook, "用户信息列表");
         } catch (Exception e) {
-            log.error("异步导出用户信息列表异常: {}", e.getMessage());
+            log.error("异步调用导出用户信息列表异常: {}", e.getMessage());
         }
 
         return workbook;
