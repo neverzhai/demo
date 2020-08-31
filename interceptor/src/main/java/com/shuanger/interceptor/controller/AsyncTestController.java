@@ -24,7 +24,6 @@ import java.util.concurrent.Callable;
 @RequestMapping("/asyncTest")
 public class AsyncTestController {
 
-
     // 方式一  方式实现异步请求
     @RequestMapping(value = "/email/servletReq")
     public void servletReq (HttpServletRequest request, HttpServletResponse response) {

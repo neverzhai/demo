@@ -50,13 +50,14 @@ public class InterceptorOne implements HandlerInterceptor {
             String methodName = ((HandlerMethod) handler).getMethod().getName();
             method = beanType + "."+methodName;
         }
-        log.info("uri: {}; method: {}; status: {}; exception: {}; totalTime: {}ms; firstTask: {}ms; lastTask: {}ms", request.getRequestURI(), method,
-                response.getStatus(), ex == null ? "-" : ex.getClass().getSimpleName(),
-                sw.getTotalTimeMillis(), sw.getTotalTimeMillis()-sw.getLastTaskTimeMillis(),
+        log.info("uri: {}; method: {}; status: {}", request.getRequestURI(), method, response.getStatus());
+
+        log.info("totalTime: {}ms; firstTask: {}ms; lastTask: {}ms",
+                sw.getTotalTimeMillis(),
+                sw.getTotalTimeMillis()-sw.getLastTaskTimeMillis(),
                 sw.getLastTaskTimeMillis());
 
         stopWatch.remove();
-
 
     }
 }

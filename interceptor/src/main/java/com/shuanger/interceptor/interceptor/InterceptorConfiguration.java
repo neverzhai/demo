@@ -27,9 +27,9 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
         registration.addPathPatterns("/**")
                 .order(2);
 
-        InterceptorRegistration registrationOne = registry.addInterceptor(interceptorOne);
-        registrationOne.addPathPatterns("/**")
-                .order(1);
+//        InterceptorRegistration registrationOne = registry.addInterceptor(interceptorOne);
+//        registrationOne.addPathPatterns("/**")
+//                .order(1);
 
     }
 
