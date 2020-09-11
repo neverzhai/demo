@@ -19,6 +19,7 @@
 		<module>interceptor</module>
 		<module>java-date</module>
 		<module>transactional-return</module>
+		<module>java-collections-tool</module>
 	</modules>
 
 	<properties>
