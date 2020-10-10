@@ -20,6 +20,7 @@
 		<module>java-date</module>
 		<module>transactional-return</module>
 		<module>java-collections-tool</module>
+		<module>thread-local</module>
 	</modules>
 
 	<properties>
