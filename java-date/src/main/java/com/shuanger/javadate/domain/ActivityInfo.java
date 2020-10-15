@@ -3,10 +3,12 @@ package com.shuanger.javadate.domain;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author: zhaixiaoshuang
@@ -24,9 +26,11 @@ public class ActivityInfo {
 
     private String activityDesc;
 
-    private LocalDate startTime;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date startTime;
 
-    private LocalDate endTime;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date endTime;
 
     private Integer deleted;
 

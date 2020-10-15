@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * @author: zhaixiaoshuang
@@ -21,8 +22,8 @@ public class CreateActivityRequest {
     private String activityDesc;
 
     @NotNull(message = "活动起始时间不能为空")
-    private LocalDate startTime;
+    private Date startTime;
 
     @NotNull(message = "活动结束时间不能为空")
-    private LocalDate endTime;
+    private Date endTime;
 }
