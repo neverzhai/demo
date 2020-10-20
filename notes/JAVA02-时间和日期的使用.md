@@ -53,11 +53,12 @@ CREATE TABLE `activity_info`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '活动信息表' ROW_FORMAT = Dynamic;
 ```
 
-#### 实验一: 使用带有serverTimezone=Asia/Shanghai的连接
+#### 实验一: 使用带有serverTimezone=Asia/Shanghai 或 serverTimezone=GMT%2b8 的连接
 
 
 #### 实验二: 使用不带有serverTimezone的连接
 
+#### 实验三：使用@JsonFormat注解设置timezone=GMT+8
 
 #### 实验三: 设置serverTimezone=UTC
 
@@ -87,7 +88,7 @@ https://blog.csdn.net/qq_30553235/article/details/79612824
 
 The current time zone. This variable is used to initialize the time zone for each client that connects. By default, the initial value of this is 'SYSTEM' (which means, “use the value of system_time_zone”).
 
-如何修改timezone呢  ?????
+
  
 全局参数system_time_zone
 系统时区，在MySQL启动时会检查当前系统的时区并根据系统时区设置全局参数system_time_zone的值。

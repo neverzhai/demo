@@ -26,10 +26,8 @@ public class ActivityInfo {
 
     private String activityDesc;
 
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date startTime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
 
     private Integer deleted;

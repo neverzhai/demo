@@ -21,6 +21,7 @@
 		<module>transactional-return</module>
 		<module>java-collections-tool</module>
 		<module>thread-local</module>
+		<module>interview</module>
 	</modules>
 
 	<properties>
