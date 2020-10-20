@@ -19,4 +19,11 @@ public class weChatController {
 
         return "accesssToken";
     }
+
+    @RequestMapping("/login")
+    public void login() {
+
+    }
+
+
 }
