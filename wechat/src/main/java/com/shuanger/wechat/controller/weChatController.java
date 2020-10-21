@@ -1,10 +1,17 @@
 package com.shuanger.wechat.controller;
 
+import com.shuanger.wechat.params.GetWechatInfoRequest;
 import com.shuanger.wechat.response.BusinessCode;
 import com.shuanger.wechat.response.ResponseResult;
+import com.shuanger.wechat.service.UserInfoService;
+import com.shuanger.wechat.service.WechatService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author: zhaixiaoshuang
@@ -16,6 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/wechat")
 public class weChatController {
 
+    @Resource
+    private WechatService wechatService;
+
+    @Resource
+    private UserInfoService userInfoService;
+
     @RequestMapping("/getAccessToken")
     public Object getAccessToken() {
 
@@ -24,6 +37,7 @@ public class weChatController {
 
     /**
      * 使用openId + mobile登录
+     * 如果想在登录时获得用户的昵称和头像怎么操作
      */
     @RequestMapping("/login")
     public ResponseResult login() {
@@ -32,6 +46,7 @@ public class weChatController {
         // 返回登录成功的token
         return ResponseResult.create(BusinessCode.SUCCESS);
     }
+
 
     /**
      * 使用mobile + verify code登录
@@ -48,8 +63,9 @@ public class weChatController {
      * 获取微信openId, sessionKey
      */
     @RequestMapping("/getWechatInfo")
-    public ResponseResult getWechatInfo() {
+    public ResponseResult getWechatInfo(@RequestBody @Validated GetWechatInfoRequest request) {
 
+        wechatService.getWechatInfo(request.getCode());
         return ResponseResult.create(BusinessCode.SUCCESS);
     }
 

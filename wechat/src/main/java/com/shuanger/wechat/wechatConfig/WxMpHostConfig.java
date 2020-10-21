@@ -19,6 +19,7 @@ public class WxMpHostConfig {
     public static final String API_DEFAULT_HOST_URL = "https://api.weixin.qq.com";
     public static final String MP_DEFAULT_HOST_URL = "https://mp.weixin.qq.com";
     public static final String OPEN_DEFAULT_HOST_URL = "https://open.weixin.qq.com";
+    String WXLOGINURl = "https://api.weixin.qq.com/sns/jscode2session";
 
     /**
      *
