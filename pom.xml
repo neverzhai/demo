@@ -48,6 +48,12 @@
 				<version>1.18.10</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-aop</artifactId>
+				<version>2.2.6.RELEASE</version>
+			</dependency>
+
 			<!-- excel 工具 -->
 			<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 			<dependency>
