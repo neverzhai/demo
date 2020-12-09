@@ -21,13 +21,13 @@ public class MyAutoGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
 //        String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir("D:\\joycity-points");
+        gc.setOutputDir("D:\\test-demo");
         gc.setAuthor("zhaixiaoshuang");
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
+        dsc.setUrl("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
@@ -36,10 +36,10 @@ public class MyAutoGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("joycity");
+        pc.setModuleName("mysql-lock-demo");
         pc.setMapper("dao");
         pc.setEntity("domain");
-        pc.setParent("com.jdcity");
+        pc.setParent("com.shuanger");
         mpg.setPackageInfo(pc);
 
 
