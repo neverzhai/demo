@@ -4,7 +4,7 @@
 
     <update id="updateData">
         UPDATE test_index_lock_table
-        set `name` = #{name}
-        WHERE deleted = 1 AND custome_id = #{customId}
+        set index_name = #{name}
+        WHERE deleted = 0 AND custom_id = #{customId}
     </update>
 </mapper>

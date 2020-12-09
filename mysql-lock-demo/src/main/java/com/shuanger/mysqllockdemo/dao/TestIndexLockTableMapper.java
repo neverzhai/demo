@@ -3,6 +3,7 @@ package com.shuanger.mysqllockdemo.dao;
 
 import com.shuanger.mysqllockdemo.domain.TestIndexLockTable;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -14,5 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface TestIndexLockTableMapper extends BaseMapper<TestIndexLockTable> {
 
-    int updateData(String customId, String name);
+    int updateData(@Param("customId") String customId, @Param("name") String name);
 }

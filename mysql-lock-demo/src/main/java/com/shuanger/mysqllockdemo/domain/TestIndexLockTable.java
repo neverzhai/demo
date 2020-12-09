@@ -39,7 +39,7 @@ public class TestIndexLockTable implements Serializable {
     /**
      * 名称
      */
-    private String name;
+    private String indexName;
 
     /**
      * 0：未删除 1：已删除

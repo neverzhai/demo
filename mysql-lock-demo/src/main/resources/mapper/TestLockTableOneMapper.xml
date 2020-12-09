@@ -5,6 +5,6 @@
     <update id="updateTableOneInternal">
         UPDATE test_lock_table_one
         set name = #{name}
-        WHERE deleted = 1 AND custome_id = #{customId}
+        WHERE deleted = 0 AND custome_id = #{customId}
     </update>
 </mapper>

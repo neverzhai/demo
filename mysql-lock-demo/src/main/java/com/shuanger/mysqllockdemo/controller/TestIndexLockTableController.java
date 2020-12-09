@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  * @since 2020-12-09
  */
 @RestController
-@RequestMapping("/mysqlDemo/test")
+@RequestMapping("/mysqlDemo/test1")
 public class TestIndexLockTableController {
 
     @Resource

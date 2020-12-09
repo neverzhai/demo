@@ -33,6 +33,30 @@ show processlist;
  SHOW VARIABLES like "autocommit"
  
  KILL 4742
+ 
+ show processlist;
+ 
+  SELECT * FROM information_schema.INNODB_TRX;
+  
+  SELECT * FROM information_schema.INNODB_LOCKs;
+  
+  SELECT * FROM information_schema.INNODB_LOCK_WAITS;
+  
+  
+  show status like 'thread%';
+  SHOW VARIABLES like "autocommit"
+  
+  KILL 4801
+  
+  SET autocommit  = 1
+  
+  select now(),(UNIX_TIMESTAMP(now()) - UNIX_TIMESTAMP(a.trx_started)) diff_sec,b.id,b.user,b.host,b.db,d.SQL_TEXT from information_schema.innodb_trx a inner join information_schema.PROCESSLIST b
+ on a.TRX_MYSQL_THREAD_ID=b.id and b.command = 'Sleep'
+ inner join performance_schema.threads c ON b.id = c.PROCESSLIST_ID
 ```
 
 ### lock mode and lock type 
+
+## 参考资料
+https://blog.csdn.net/qq_44961149/article/details/108420073
+https://www.cnblogs.com/kunjian/p/11552646.html

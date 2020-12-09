@@ -42,8 +42,6 @@ public class TestLockTableOneServiceImpl extends ServiceImpl<TestLockTableOneMap
     @Override
     public boolean updateTableOne(String customId, String name) {
 
-        TestIndexLockTable indexLockTable = indexLockTableService.queryIndexTable(customId);
-
         boolean result = updateTableOneInternal(customId, name);
 
         return result;
@@ -53,7 +51,9 @@ public class TestLockTableOneServiceImpl extends ServiceImpl<TestLockTableOneMap
 
         TransactionStatus transaction = dataSourceTransactionManager.getTransaction(transactionDefinition);
         try {
+            TestIndexLockTable indexLockTable = indexLockTableService.queryIndexTable(customId);
            lockTableOneMapper.updateTableOneInternal(customId, name);
+           log.info("更新before commit");
            dataSourceTransactionManager.commit(transaction);
 
         } catch (BusinessException exception) {
@@ -61,6 +61,7 @@ public class TestLockTableOneServiceImpl extends ServiceImpl<TestLockTableOneMap
             dataSourceTransactionManager.rollback(transaction);
         } catch (Exception ex) {
             log.error("更新数据异常: {}", ex.getMessage());
+            throw  new BusinessException(400, "更新数据异常了");
         }
 
         return false;

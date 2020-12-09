@@ -22,7 +22,7 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @RestController
-@RequestMapping("/mysqlDemo/test/one")
+@RequestMapping("/mysqlDemo/test2")
 public class TestLockTableOneController {
 
     @Resource

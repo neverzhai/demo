@@ -8,6 +8,7 @@ import com.shuanger.mysqllockdemo.dao.TestIndexLockTableMapper;
 import com.shuanger.mysqllockdemo.service.ITestIndexLockTableService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;

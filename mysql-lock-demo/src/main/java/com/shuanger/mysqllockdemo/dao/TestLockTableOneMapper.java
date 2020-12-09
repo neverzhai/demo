@@ -3,6 +3,7 @@ package com.shuanger.mysqllockdemo.dao;
 
 import com.shuanger.mysqllockdemo.domain.TestLockTableOne;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -14,5 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface TestLockTableOneMapper extends BaseMapper<TestLockTableOne> {
 
-    void updateTableOneInternal(String customId, String name);
+    void updateTableOneInternal(@Param("customId") String customId, @Param("name") String name);
 }
