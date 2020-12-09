@@ -1,6 +1,8 @@
 package com.shuanger.mysqllockdemo.service.impl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.shuanger.mysqllockdemo.domain.TestIndexLockTable;
 import com.shuanger.mysqllockdemo.dao.TestIndexLockTableMapper;
 import com.shuanger.mysqllockdemo.service.ITestIndexLockTableService;
@@ -29,5 +31,13 @@ public class TestIndexLockTableServiceImpl extends ServiceImpl<TestIndexLockTabl
     public boolean updateData(String customId, String name) {
         int count = indexLockTableMapper.updateData(customId, name);
         return count > 0;
+    }
+
+    @Override
+    public TestIndexLockTable queryIndexTable(String customId) {
+        LambdaQueryWrapper<TestIndexLockTable> queryWrapper = new QueryWrapper<TestIndexLockTable>().lambda()
+                .eq(TestIndexLockTable::getCustomId, customId);
+
+        return getOne(queryWrapper);
     }
 }

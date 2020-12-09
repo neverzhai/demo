@@ -42,11 +42,6 @@ public class TestIndexLockTable implements Serializable {
     private String name;
 
     /**
-     * 用户当前的等级收集的金果数量
-     */
-    private Long currentFruitCount;
-
-    /**
      * 0：未删除 1：已删除
      */
     private Boolean deleted;

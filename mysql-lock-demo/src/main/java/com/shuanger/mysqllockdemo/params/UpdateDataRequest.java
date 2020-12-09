@@ -8,7 +8,7 @@ import lombok.Data;
  * @description:
  */
 @Data
-public class UpdateIndexLockTableRequest {
+public class UpdateDataRequest {
 
     private String customId;
 

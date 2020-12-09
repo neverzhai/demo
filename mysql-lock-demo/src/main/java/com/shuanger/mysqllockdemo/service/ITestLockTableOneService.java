@@ -14,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ITestLockTableOneService extends IService<TestLockTableOne> {
 
+    boolean updateTableOne(String customId, String name);
 }

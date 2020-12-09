@@ -2,7 +2,7 @@ package com.shuanger.mysqllockdemo.controller;
 
 
 
-import com.shuanger.mysqllockdemo.params.UpdateIndexLockTableRequest;
+import com.shuanger.mysqllockdemo.params.UpdateDataRequest;
 import com.shuanger.mysqllockdemo.service.ITestIndexLockTableService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +28,7 @@ public class TestIndexLockTableController {
 
 
     @PostMapping("/update")
-    public Boolean updateData(@RequestBody UpdateIndexLockTableRequest request) {
+    public Boolean updateData(@RequestBody UpdateDataRequest request) {
 
         testIndexLockTableService.updateData(request.getCustomId(), request.getName());
         return true;

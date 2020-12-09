@@ -14,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface TestLockTableOneMapper extends BaseMapper<TestLockTableOne> {
 
+    void updateTableOneInternal(String customId, String name);
 }
