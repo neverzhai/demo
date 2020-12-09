@@ -22,6 +22,7 @@
 		<module>java-collections-tool</module>
 		<module>thread-local</module>
 		<module>interview</module>
+		<module>mysql-lock-demo</module>
 	</modules>
 
 	<properties>
