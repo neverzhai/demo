@@ -32,6 +32,8 @@
 		<mysql-connector.version>5.1.41</mysql-connector.version>
 		<mybatis-puls.version>3.0.7.1</mybatis-puls.version>
 		<druid.version>1.1.0</druid.version>
+		<mybatis-plus-generator.version>3.0.7.1</mybatis-plus-generator.version>
+		<velocity-engine-core.version>2.2</velocity-engine-core.version>
 	</properties>
 
 	<dependencyManagement>
@@ -98,6 +100,18 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
 				<version>${druid.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-generator</artifactId>
+				<version>${mybatis-plus-generator.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity-engine-core</artifactId>
+				<version>${velocity-engine-core.version}</version>
 			</dependency>
 
 			<dependency>
