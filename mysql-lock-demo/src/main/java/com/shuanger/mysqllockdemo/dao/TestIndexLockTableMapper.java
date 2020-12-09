@@ -14,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface TestIndexLockTableMapper extends BaseMapper<TestIndexLockTable> {
 
+    int updateData(String customId, String name);
 }

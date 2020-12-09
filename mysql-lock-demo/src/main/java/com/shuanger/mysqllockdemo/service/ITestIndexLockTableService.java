@@ -14,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ITestIndexLockTableService extends IService<TestIndexLockTable> {
 
+    boolean updateData(String customId, String name);
 }

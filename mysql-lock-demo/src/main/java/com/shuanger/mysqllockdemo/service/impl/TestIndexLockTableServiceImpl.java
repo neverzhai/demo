@@ -6,6 +6,9 @@ import com.shuanger.mysqllockdemo.dao.TestIndexLockTableMapper;
 import com.shuanger.mysqllockdemo.service.ITestIndexLockTableService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -18,4 +21,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestIndexLockTableServiceImpl extends ServiceImpl<TestIndexLockTableMapper, TestIndexLockTable> implements ITestIndexLockTableService {
 
+    @Resource
+    private TestIndexLockTableMapper indexLockTableMapper;
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean updateData(String customId, String name) {
+        int count = indexLockTableMapper.updateData(customId, name);
+        return count > 0;
+    }
 }
