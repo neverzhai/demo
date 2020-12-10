@@ -50,9 +50,11 @@ show processlist;
   
   SET autocommit  = 1
   
-  select now(),(UNIX_TIMESTAMP(now()) - UNIX_TIMESTAMP(a.trx_started)) diff_sec,b.id,b.user,b.host,b.db,d.SQL_TEXT from information_schema.innodb_trx a inner join information_schema.PROCESSLIST b
- on a.TRX_MYSQL_THREAD_ID=b.id and b.command = 'Sleep'
- inner join performance_schema.threads c ON b.id = c.PROCESSLIST_ID
+select now(),(UNIX_TIMESTAMP(now()) - UNIX_TIMESTAMP(a.trx_started)) diff_sec,b.id,b.user,b.host,b.db,d.SQL_TEXT
+from information_schema.innodb_trx a 
+inner join information_schema.PROCESSLIST b on a.TRX_MYSQL_THREAD_ID=b.id and b.command = 'Sleep'
+inner join performance_schema.threads c ON b.id = c.PROCESSLIST_ID
+inner join performance_schema.events_statements_current d ON d.THREAD_ID = c.THREAD_ID;
 ```
 
 ### lock mode and lock type 
@@ -60,3 +62,16 @@ show processlist;
 ## 参考资料
 https://blog.csdn.net/qq_44961149/article/details/108420073
 https://www.cnblogs.com/kunjian/p/11552646.html
+
+https://cloud.tencent.com/developer/article/1511089
+
+
+### 问题结论
+因为我的事务传播机制选择的是默认的 Propagation.REQUIRED,  意味着如果有事务, 我会使用已经存在的事务
+又要第一个请求开启了事务, 但是执行出现异常,导致事务没有提交也没有回滚, 我的事务就一直无法执行, 
+而我的更新存在行锁, 导致我永远得不到锁, 后面的请求就都挂了.
+
+### 解决方案
+1.使用 Propagation.REQUIRED_NEW 
+2. 长事务如果自动让他回滚呢???? 
+3. 最重要的是不需要写出这样的代码呀?? 

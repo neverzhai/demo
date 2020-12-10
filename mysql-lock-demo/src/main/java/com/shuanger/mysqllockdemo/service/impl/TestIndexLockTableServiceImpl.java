@@ -28,7 +28,7 @@ public class TestIndexLockTableServiceImpl extends ServiceImpl<TestIndexLockTabl
     private TestIndexLockTableMapper indexLockTableMapper;
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public boolean updateData(String customId, String name) {
         int count = indexLockTableMapper.updateData(customId, name);
         return count > 0;
