@@ -1,10 +1,8 @@
 package com.shuanger.mysqllockdemo.service.impl;
 
-import com.shuanger.mysqllockdemo.domain.TestIndexLockTable;
 import com.shuanger.mysqllockdemo.domain.TestLockTableOne;
 import com.shuanger.mysqllockdemo.dao.TestLockTableOneMapper;
 import com.shuanger.mysqllockdemo.exception.BusinessException;
-import com.shuanger.mysqllockdemo.service.ITestIndexLockTableService;
 import com.shuanger.mysqllockdemo.service.ITestLockTableOneService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +24,6 @@ import javax.annotation.Resource;
 @Slf4j
 @Service
 public class TestLockTableOneServiceImpl extends ServiceImpl<TestLockTableOneMapper, TestLockTableOne> implements ITestLockTableOneService {
-
-    @Resource
-    private ITestIndexLockTableService indexLockTableService;
-
     @Resource
     private DataSourceTransactionManager dataSourceTransactionManager;
 
@@ -51,7 +45,6 @@ public class TestLockTableOneServiceImpl extends ServiceImpl<TestLockTableOneMap
 
         TransactionStatus transaction = dataSourceTransactionManager.getTransaction(transactionDefinition);
         try {
-            TestIndexLockTable indexLockTable = indexLockTableService.queryIndexTable(customId);
            lockTableOneMapper.updateTableOneInternal(customId, name);
            log.info("更新before commit");
            dataSourceTransactionManager.commit(transaction);

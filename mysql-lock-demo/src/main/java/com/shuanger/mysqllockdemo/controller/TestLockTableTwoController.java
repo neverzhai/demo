@@ -3,7 +3,7 @@ package com.shuanger.mysqllockdemo.controller;
 
 
 import com.shuanger.mysqllockdemo.params.UpdateDataRequest;
-import com.shuanger.mysqllockdemo.service.ITestIndexLockTableService;
+import com.shuanger.mysqllockdemo.service.ITestLockTableTwoService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +21,10 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/mysqlDemo/test1")
-public class TestIndexLockTableController {
+public class TestLockTableTwoController {
 
     @Resource
-    private ITestIndexLockTableService testIndexLockTableService;
+    private ITestLockTableTwoService testIndexLockTableService;
 
 
     @PostMapping("/update")

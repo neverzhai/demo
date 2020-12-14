@@ -1,7 +1,7 @@
 package com.shuanger.mysqllockdemo.service;
 
 
-import com.shuanger.mysqllockdemo.domain.TestIndexLockTable;
+import com.shuanger.mysqllockdemo.domain.TestLockTableTwo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -12,9 +12,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author zhaixiaoshuang
  * @since 2020-12-09
  */
-public interface ITestIndexLockTableService extends IService<TestIndexLockTable> {
+public interface ITestLockTableTwoService extends IService<TestLockTableTwo> {
 
     boolean updateData(String customId, String name);
 
-    TestIndexLockTable queryIndexTable(String customId);
+    TestLockTableTwo queryIndexTable(String customId);
 }
