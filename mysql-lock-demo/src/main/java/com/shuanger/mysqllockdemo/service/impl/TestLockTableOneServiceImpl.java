@@ -5,6 +5,7 @@ import com.shuanger.mysqllockdemo.dao.TestLockTableOneMapper;
 import com.shuanger.mysqllockdemo.exception.BusinessException;
 import com.shuanger.mysqllockdemo.service.ITestLockTableOneService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.shuanger.mysqllockdemo.service.ITestLockTableTwoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,9 @@ public class TestLockTableOneServiceImpl extends ServiceImpl<TestLockTableOneMap
     private TransactionDefinition transactionDefinition;
 
     @Resource
+    private ITestLockTableTwoService testLockTableTwoService;
+
+    @Resource
     private TestLockTableOneMapper lockTableOneMapper;
 
     @Override
@@ -45,9 +49,11 @@ public class TestLockTableOneServiceImpl extends ServiceImpl<TestLockTableOneMap
 
         TransactionStatus transaction = dataSourceTransactionManager.getTransaction(transactionDefinition);
         try {
-           lockTableOneMapper.updateTableOneInternal(customId, name);
-           log.info("更新before commit");
-           dataSourceTransactionManager.commit(transaction);
+
+            testLockTableTwoService.queryIndexTable(customId);
+
+            lockTableOneMapper.updateTableOneInternal(customId, name);
+            dataSourceTransactionManager.commit(transaction);
 
         } catch (BusinessException exception) {
             log.error("更新数据异常");

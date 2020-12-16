@@ -10,11 +10,10 @@ CREATE TABLE `test_lock_table_one`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '测试锁表' ROW_FORMAT = Dynamic;
 
 
-CREATE TABLE `test_index_lock_table`  (
+CREATE TABLE `test_lock_table_two`  (
                                         `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID自增',
                                         `custom_id` varchar(32) NOT NULL COMMENT '自定义id',
                                         `name` varchar(32) NOT NULL COMMENT '名称',
-                                        `current_fruit_count` bigint(20) NOT NULL COMMENT '用户当前的等级收集的金果数量',
                                         `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '0：未删除 1：已删除',
                                         `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
                                         `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',

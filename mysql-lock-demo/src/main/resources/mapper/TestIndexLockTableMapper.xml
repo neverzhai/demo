@@ -3,7 +3,7 @@
 <mapper namespace="com.shuanger.mysqllockdemo.dao.TestIndexLockTableMapper">
 
     <update id="updateData">
-        UPDATE test_index_lock_table
+        UPDATE test_lock_table_two
         set index_name = #{name}
         WHERE deleted = 0 AND custom_id = #{customId}
     </update>
