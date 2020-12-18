@@ -23,6 +23,7 @@
 		<module>thread-local</module>
 		<module>interview</module>
 		<module>mysql-lock-demo</module>
+		<module>completatbl-future-demo</module>
 	</modules>
 
 	<properties>
