@@ -51,6 +51,17 @@ call idata();
 ## 场景描述
 
 ## 使用join方式 -- 无索引
+```sql
+
+SELECT *  FROM test_employee_info AS employee
+LEFT JOIN test_department_info AS depart On employee.depart_id = depart.depart_id
+```
+图--
+```sql
+EXPLAIN SELECT *  FROM test_employee_info AS employee
+LEFT JOIN test_department_info AS depart On employee.depart_id = depart.depart_id
+```
+图--
 
 ## 
 
