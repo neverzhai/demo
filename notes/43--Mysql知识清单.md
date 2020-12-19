@@ -24,6 +24,9 @@
 - 最左匹配原理
 - 前缀索引
 
+
+- 
+
 ### 数据库引擎
  - InnoDB B-Tree and B+ Tree
  - MyISAM

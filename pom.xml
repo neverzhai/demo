@@ -24,6 +24,7 @@
 		<module>interview</module>
 		<module>mysql-lock-demo</module>
 		<module>completatbl-future-demo</module>
+		<module>mysql-join-demo</module>
 	</modules>
 
 	<properties>
