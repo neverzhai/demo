@@ -1,4 +1,4 @@
-package com.shuanger.mysqllockdemo.auto;
+package com.shuanger.mysqljoindemo;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
@@ -23,7 +23,7 @@ public class MyAutoGenerator {
 //        String projectPath = System.getProperty("user.dir");
 //        gc.setOutputDir("D:\\test-demo");
         String projectPath = System.getProperty("user.dir");//用户目录
-        gc.setOutputDir(projectPath + "/src/main/java");    //输出目录
+        gc.setOutputDir(projectPath + "/mysql-join-demo/src/main/java");    //输出目录
         gc.setAuthor("zhaixiaoshuang");
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
