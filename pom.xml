@@ -25,6 +25,8 @@
 		<module>mysql-lock-demo</module>
 		<module>completatbl-future-demo</module>
 		<module>mysql-join-demo</module>
+		<module>rocketmq-demo</module>
+		<module>kafka-demo</module>
 	</modules>
 
 	<properties>
@@ -120,6 +122,12 @@
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>httpclient</artifactId>
 				<version>4.5.12</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-spring-boot-starter</artifactId>
+				<version>${rocketmq-version}</version>
 			</dependency>
 
 		</dependencies>

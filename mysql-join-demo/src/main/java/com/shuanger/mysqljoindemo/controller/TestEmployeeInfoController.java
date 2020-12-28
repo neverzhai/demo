@@ -28,7 +28,7 @@ public class TestEmployeeInfoController {
     @Resource
     private ITestEmployeeInfoService employeeInfoService;
 
-    @GetMapping("getWihtJoin")
+    @GetMapping("getWithJoin")
     public ResponseEntity<List<EmployeeInfoDto>> getEmployeeInfoWithJoin() {
         List<EmployeeInfoDto> employeeInfoWithJoin = employeeInfoService.getEmployeeInfoWithJoin();
 
