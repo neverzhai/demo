@@ -21,16 +21,16 @@ import javax.annotation.Resource;
 @Service
 @RocketMQMessageListener(nameServer = "${rocketmq.name-server}",
         topic = "${rocketmq.topic.user}",
-        consumerGroup = "user_consumer",
-        accessKey = "RocketMQ",
-        secretKey = "12345678"
+        consumerGroup = "user_consumer"
+//        accessKey = "RocketMQ",
+//        secretKey = "12345678"
 )
 public class SysUserInfoConsumer implements RocketMQListener<String> {
 
     @Resource
     private ISysUserInfoService sysUserInfoService;
 
-    @Value("${rocketmq.topic.cbcAesKey}")
+//    @Value("${rocketmq.topic.cbcAesKey}")
     private String cbcKey;
 
     @Override
