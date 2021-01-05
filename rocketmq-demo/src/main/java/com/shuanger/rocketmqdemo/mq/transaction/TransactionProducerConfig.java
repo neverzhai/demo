@@ -13,27 +13,27 @@ import java.util.concurrent.ExecutorService;
  * @date: 2020-12-30 16:16
  * @description:
  */
-@Configuration
+//@Configuration
 public class TransactionProducerConfig {
 
 
-    @Value("${rocketmq.producer.group}")
-    private String orderProducer;
-
-    @Resource
-    private TransactionListenerImpl transactionListener;
-
+//    @Value("${rocketmq.producer.group}")
+//    private String orderProducer;
+//
 //    @Resource
-//    private ExecutorService executorService;
-
-    @Bean
-    public TransactionMQProducer createTransactionMQProducer() {
-
-        TransactionMQProducer producer = new TransactionMQProducer(orderProducer);
-        producer.setTransactionListener(transactionListener);
-//        producer.setExecutorService(executorService);
-
-        return producer;
-
-    }
+//    private TransactionListenerImpl transactionListener;
+//
+////    @Resource
+////    private ExecutorService executorService;
+//
+//    @Bean
+//    public TransactionMQProducer createTransactionMQProducer() {
+//
+//        TransactionMQProducer producer = new TransactionMQProducer(orderProducer);
+//        producer.setTransactionListener(transactionListener);
+////        producer.setExecutorService(executorService);
+//
+//        return producer;
+//
+//    }
 }

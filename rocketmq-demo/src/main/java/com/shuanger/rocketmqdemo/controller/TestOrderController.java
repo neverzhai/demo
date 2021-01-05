@@ -3,14 +3,13 @@ package com.shuanger.rocketmqdemo.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.shuanger.rocketmqdemo.OrderStatus;
 import com.shuanger.rocketmqdemo.domain.TestOrder;
+import com.shuanger.rocketmqdemo.mq.ExtRocketMQTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQClientException;
-import org.apache.rocketmq.client.producer.TransactionMQProducer;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
-import org.apache.rocketmq.common.message.Message;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +27,9 @@ import java.math.BigDecimal;
 public class TestOrderController {
 
     @Resource
-    private TransactionMQProducer transactionMQProducer;
+    private ExtRocketMQTemplate extRocketMQTemplate;
+
+
 
     @Value("${rocketmq.topic.order}")
     private String orderTopic;
@@ -43,17 +44,14 @@ public class TestOrderController {
         request.setPaymentAmount(new BigDecimal(20));
         request.setOrderStatus(OrderStatus.UNPAYED.getCode());
 
-        Message message = new Message(orderTopic, JSONObject.toJSONBytes(request));
         try {
-            TransactionSendResult sendResult = transactionMQProducer.sendMessageInTransaction(message, request);
+            TransactionSendResult sendResult = extRocketMQTemplate.sendMessageInTransaction(orderTopic, MessageBuilder.withPayload(request).build(),  request);
             log.info("事务结果{}", sendResult.getLocalTransactionState());
-
-        } catch (MQClientException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            log.error("发送信息异常:{}", e.getMessage());
         }
+
         return true;
     }
 
-
-    //
 }
