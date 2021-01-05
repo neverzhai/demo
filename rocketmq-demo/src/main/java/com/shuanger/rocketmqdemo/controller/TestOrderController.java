@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.HashMap;
 
 /**
  * @author: zhaixiaoshuang
@@ -33,28 +36,35 @@ public class TestOrderController {
     @Resource
     private SysUserInfoProducer sysUserInfoProducer;
 
-//    @Value("${demo.rocketmq.topic}")
-//    private String orderTopic;
+    @Value("${demo.rocketmq.topic}")
+    private String orderTopic;
 
-//    // 预下单接口-- 状态是待支付
-//    @GetMapping("/pre")
-//    public Boolean createOrder() {
-//
-//        TestOrder request = new TestOrder();
-//        request.setUserId("3ef100c4-227e-11eb-adc1-0242ac120002");
-//        request.setOrderId("2d552868-4a74-11eb-b378-0242ac130002");
-//        request.setPaymentAmount(new BigDecimal(20));
-//        request.setOrderStatus(OrderStatus.UNPAYED.getCode());
-//
-//        try {
-//            TransactionSendResult sendResult = extRocketMQTemplate.sendMessageInTransaction(orderTopic, MessageBuilder.withPayload(request).build(),  request);
-//            log.info("事务结果{}", sendResult.getLocalTransactionState());
-//        } catch (Exception e) {
-//            log.error("发送信息异常:{}", e.getMessage());
-//        }
-//
-//        return true;
-//    }
+    // 预下单接口-- 状态是待支付
+    @GetMapping("/pre")
+    public Boolean createOrder() {
+
+        TestOrder request = new TestOrder();
+        request.setUserId("3ef100c4-227e-11eb-adc1-0242ac120002");
+        request.setOrderId("6dfdedb6-4f54-11eb-ae93-0242ac130002");
+        request.setGoodsId("6dfde96a-4f54-11eb-ae93-0242ac130002");
+        request.setPaymentAmount(new BigDecimal(20));
+        request.setOrderStatus(OrderStatus.UNPAYED.getCode());
+
+        HashMap<String, Object> headers = new HashMap<>();
+        headers.put("KEYS", request.getOrderId());
+        MessageHeaders messageHeaders = new MessageHeaders(headers);
+
+        try {
+
+            Message<TestOrder> message = MessageBuilder.createMessage(request, messageHeaders);
+            TransactionSendResult sendResult = extRocketMQTemplate.sendMessageInTransaction(orderTopic +":order",  message,  request);
+            log.info("事务结果{}", sendResult.getLocalTransactionState());
+        } catch (Exception e) {
+            log.error("发送信息异常:{}", e.getMessage());
+        }
+
+        return true;
+    }
 
     @GetMapping("/test")
     public Boolean testSentSys()  {

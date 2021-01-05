@@ -27,6 +27,8 @@ public class TestOrder {
 
     private String userId;
 
+    private String goodsId;
+
     private BigDecimal paymentAmount;
 
     private Integer orderStatus;

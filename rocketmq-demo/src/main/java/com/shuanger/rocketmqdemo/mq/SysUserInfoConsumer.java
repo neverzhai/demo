@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 @Slf4j
 @Service
 @RocketMQMessageListener(nameServer = "${rocketmq.name-server}",
-        topic = "${demo-rocketmq.topic}",
+        topic = "${demo.rocketmq.topic}",
         consumerGroup = "user_consumer_user",
         selectorExpression = "user"
 )

@@ -23,7 +23,7 @@ import java.util.HashMap;
 @Service
 public class SysUserInfoProducer {
 
-    @Value("${demo-rocketmq.topic}")
+    @Value("${demo.rocketmq.topic}")
     private String userTopic;
 
     @Resource
