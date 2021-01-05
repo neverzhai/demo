@@ -22,14 +22,11 @@ public class TestShoppingCar {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-
-    private String orderId;
-
     private String userId;
 
-    private BigDecimal paymentAmount;
+    private BigDecimal goodsCount;
 
-    private Integer orderStatus;
+    private String goodsId;
     /**
      * 0：未删除 1：已删除
      */

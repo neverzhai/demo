@@ -9,4 +9,5 @@ import com.shuanger.rocketmqdemo.domain.TestShoppingCar;
  * @description:
  */
 public interface TestShoppingCarService extends IService<TestShoppingCar> {
+    boolean removeGoodsForUser(String goodsId, String userId);
 }
