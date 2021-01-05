@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.shuanger.rocketmqdemo.OrderStatus;
 import com.shuanger.rocketmqdemo.domain.TestOrder;
 import com.shuanger.rocketmqdemo.mq.ExtRocketMQTemplate;
+import com.shuanger.rocketmqdemo.mq.SysUserInfoProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
@@ -29,27 +30,35 @@ public class TestOrderController {
     @Resource
     private ExtRocketMQTemplate extRocketMQTemplate;
 
+    @Resource
+    private SysUserInfoProducer sysUserInfoProducer;
 
+//    @Value("${demo.rocketmq.topic}")
+//    private String orderTopic;
 
-    @Value("${rocketmq.topic.order}")
-    private String orderTopic;
+//    // 预下单接口-- 状态是待支付
+//    @GetMapping("/pre")
+//    public Boolean createOrder() {
+//
+//        TestOrder request = new TestOrder();
+//        request.setUserId("3ef100c4-227e-11eb-adc1-0242ac120002");
+//        request.setOrderId("2d552868-4a74-11eb-b378-0242ac130002");
+//        request.setPaymentAmount(new BigDecimal(20));
+//        request.setOrderStatus(OrderStatus.UNPAYED.getCode());
+//
+//        try {
+//            TransactionSendResult sendResult = extRocketMQTemplate.sendMessageInTransaction(orderTopic, MessageBuilder.withPayload(request).build(),  request);
+//            log.info("事务结果{}", sendResult.getLocalTransactionState());
+//        } catch (Exception e) {
+//            log.error("发送信息异常:{}", e.getMessage());
+//        }
+//
+//        return true;
+//    }
 
-    // 预下单接口-- 状态是待支付
-    @GetMapping("/pre")
-    public Boolean createOrder() {
-
-        TestOrder request = new TestOrder();
-        request.setUserId("3ef100c4-227e-11eb-adc1-0242ac120002");
-        request.setOrderId("2d552868-4a74-11eb-b378-0242ac130002");
-        request.setPaymentAmount(new BigDecimal(20));
-        request.setOrderStatus(OrderStatus.UNPAYED.getCode());
-
-        try {
-            TransactionSendResult sendResult = extRocketMQTemplate.sendMessageInTransaction(orderTopic, MessageBuilder.withPayload(request).build(),  request);
-            log.info("事务结果{}", sendResult.getLocalTransactionState());
-        } catch (Exception e) {
-            log.error("发送信息异常:{}", e.getMessage());
-        }
+    @GetMapping("/test")
+    public Boolean testSentSys()  {
+        sysUserInfoProducer.produce();
 
         return true;
     }

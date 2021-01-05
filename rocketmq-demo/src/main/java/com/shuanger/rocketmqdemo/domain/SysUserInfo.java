@@ -3,6 +3,7 @@ package com.shuanger.rocketmqdemo.domain;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@TableName("sync_sys_user_info")
 public class SysUserInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,11 +42,6 @@ public class SysUserInfo implements Serializable {
      * 用户昵称
      */
     private String nickName;
-
-    /**
-     * 用户头像
-     */
-    private String avatarUrl;
 
     /**
      * 手机号
