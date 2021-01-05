@@ -32,6 +32,6 @@ public class TransactionTestConsumer implements RocketMQListener<TestOrder> {
         log.info("consumer on message : {}", message);
         boolean success = shoppingCarService.removeGoodsForUser(message.getGoodsId(), message.getUserId());
         log.info("购物车删除状态:{} ", success);
-        
+
     }
 }
