@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.shuanger.rocketmqdemo.dao.MemberSysUserInfoMapper;
 import com.shuanger.rocketmqdemo.domain.SysUserInfo;
 import com.shuanger.rocketmqdemo.domain.SyncUserRequest;
+import com.shuanger.rocketmqdemo.exception.BusinessException;
 import com.shuanger.rocketmqdemo.service.ISysUserInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -43,6 +44,7 @@ public class SysUserInfoServiceImpl extends ServiceImpl<MemberSysUserInfoMapper,
         SysUserInfo userInfo = queryBy(SysUserInfo::getUserId, request.getUserId());
         if(ObjectUtils.isNull(userInfo)) {
             userInfo = new SysUserInfo();
+//            return false;
         }
         log.info("同步之前用户信息： {}", JSON.toJSONString(userInfo));
 

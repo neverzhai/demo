@@ -32,10 +32,9 @@ public class ReliabilityProducer {
     public void produce() {
 
         SyncUserRequest request = new SyncUserRequest();
-        request.setUserId("3ef100c4-227e-11eb-adc1-0242ac120002");
-        request.setNickName("shuanger3");
+        request.setUserId("3c62ea3e-4fec-11eb-ae93-0242ac130002");
+        request.setNickName("shuanger4");
 
-        // 使用业务上的唯一Id, 设置消息Key, 用于消息查询
         HashMap<String, Object> headers = new HashMap<>();
         String messageKey = request.getUserId() + System.currentTimeMillis();
         headers.put("KEYS", messageKey);
@@ -43,7 +42,6 @@ public class ReliabilityProducer {
         Message<SyncUserRequest> message = MessageBuilder.createMessage(request, new MessageHeaders(headers));
         log.info("发送消息key: {}", messageKey);
 
-        // userTopic 后面使用:分隔增加tag
         extRocketMQTemplate.asyncSend(userTopic+":reliability",  message, sendCallbackFunc());
     }
 

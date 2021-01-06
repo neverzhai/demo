@@ -3,6 +3,7 @@ package com.shuanger.rocketmqdemo.controller;
 import com.shuanger.rocketmqdemo.OrderStatus;
 import com.shuanger.rocketmqdemo.domain.TestOrder;
 import com.shuanger.rocketmqdemo.mq.ExtRocketMQTemplate;
+import com.shuanger.rocketmqdemo.mq.reliability.ReliabilityProducer;
 import com.shuanger.rocketmqdemo.mq.simple.SysUserInfoProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
@@ -33,6 +34,9 @@ public class TestOrderController {
 
     @Resource
     private SysUserInfoProducer sysUserInfoProducer;
+
+    @Resource
+    private ReliabilityProducer reliabilityProducer;
 
     @Value("${demo.rocketmq.topic}")
     private String orderTopic;
@@ -67,6 +71,13 @@ public class TestOrderController {
     @GetMapping("/test")
     public Boolean testSentSys()  {
         sysUserInfoProducer.produce();
+
+        return true;
+    }
+
+    @GetMapping("/reliability")
+    public Boolean testReliability()  {
+        reliabilityProducer.produce();
 
         return true;
     }

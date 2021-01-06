@@ -1,6 +1,7 @@
 package com.shuanger.rocketmqdemo.mq.reliability;
 
 import com.shuanger.rocketmqdemo.domain.SyncUserRequest;
+import com.shuanger.rocketmqdemo.exception.BusinessException;
 import com.shuanger.rocketmqdemo.service.ISysUserInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
@@ -23,16 +24,17 @@ import javax.annotation.Resource;
 )
 public class ReliabilityConsumer implements RocketMQListener<SyncUserRequest>  {
 
-    // 如何通知Broker成功消费了消息
-
-    // TODO 还有一个ReplyListener是干什么用的, 给Producer返回信息吗
     @Resource
     private ISysUserInfoService sysUserInfoService;
 
-
     @Override
     public void onMessage(SyncUserRequest request) {
-        // TODO 这里的返回值是void, 消费者消费是否成功如何通知的Borker
-        sysUserInfoService.saveOrUpdateUserInfo(request);
+        // 通过阅读源码 DefaultRocketMQListenerContainer
+        // 可以看到当这个方法抛出异常时, 会通知Broker消息消费失败, 需要重试
+        boolean success = sysUserInfoService.saveOrUpdateUserInfo(request);
+        if(!success) {
+            log.error("用户信息同步失败");
+            throw new BusinessException("用户信息同步失败");
+        }
     }
 }
