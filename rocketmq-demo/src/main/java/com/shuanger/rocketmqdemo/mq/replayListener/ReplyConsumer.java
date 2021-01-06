@@ -22,7 +22,7 @@ import javax.annotation.Resource;
         selectorExpression = "reply"
 )
 public class ReplyConsumer implements RocketMQReplyListener<SyncUserRequest, Boolean> {
-
+    // 当Producer使用同步方式发送时, 使用RocketMQReplyListener, 用于给Producer返回信息
     @Resource
     private ISysUserInfoService sysUserInfoService;
 

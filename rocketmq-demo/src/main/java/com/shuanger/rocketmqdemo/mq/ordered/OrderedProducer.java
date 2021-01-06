@@ -44,7 +44,7 @@ public class OrderedProducer {
         log.info("发送消息key: {}", messageKey);
 
         // userTopic 后面使用:分隔增加tag
-        extRocketMQTemplate.asyncSend(userTopic+":reply",  message, sendCallbackFunc());
+        extRocketMQTemplate.asyncSendOrderly(userTopic+":reply",  message, request.getUserId(), sendCallbackFunc());
     }
 
     // 异步发送时, 要使用回调来判断消息是否发送成功
