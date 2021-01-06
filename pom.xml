@@ -30,6 +30,7 @@
 		<module>snowworkid-demo</module>
 		<module>order-flow-demo</module>
 		<module>redis-demo</module>
+		<module>google-guava-demo</module>
 	</modules>
 
 	<properties>
@@ -138,6 +139,18 @@
 				<groupId>org.springframework.kafka</groupId>
 				<artifactId>spring-kafka</artifactId>
 				<version>2.6.4</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-redis</artifactId>
+				<version>2.4.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>easyexcel</artifactId>
+				<version>2.2.6</version>
 			</dependency>
 
 		</dependencies>
