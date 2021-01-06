@@ -22,13 +22,14 @@ import javax.annotation.Resource;
         selectorExpression = "user"
 )
 public class SysUserInfoConsumer implements RocketMQListener<SyncUserRequest> {
-
+// TODO 还有一个ReplyListener是干什么用的, 给Producer返回信息吗
     @Resource
     private ISysUserInfoService sysUserInfoService;
 
 
     @Override
     public void onMessage(SyncUserRequest request) {
+        // TODO 这里的返回值是void, 消费者消费是否成功如何通知的Borker
         sysUserInfoService.saveOrUpdateUserInfo(request);
     }
 }
