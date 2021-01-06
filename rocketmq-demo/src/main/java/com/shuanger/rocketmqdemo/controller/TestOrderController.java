@@ -4,6 +4,7 @@ import com.shuanger.rocketmqdemo.OrderStatus;
 import com.shuanger.rocketmqdemo.domain.TestOrder;
 import com.shuanger.rocketmqdemo.mq.ExtRocketMQTemplate;
 import com.shuanger.rocketmqdemo.mq.reliability.ReliabilityProducer;
+import com.shuanger.rocketmqdemo.mq.replayListener.ReplyProducer;
 import com.shuanger.rocketmqdemo.mq.simple.SysUserInfoProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
@@ -37,6 +38,9 @@ public class TestOrderController {
 
     @Resource
     private ReliabilityProducer reliabilityProducer;
+
+    @Resource
+    private ReplyProducer replyProducer;
 
     @Value("${demo.rocketmq.topic}")
     private String orderTopic;
@@ -78,6 +82,13 @@ public class TestOrderController {
     @GetMapping("/reliability")
     public Boolean testReliability()  {
         reliabilityProducer.produce();
+
+        return true;
+    }
+
+    @GetMapping("/reply")
+    public Boolean testReply()  {
+        replyProducer.produce();
 
         return true;
     }
