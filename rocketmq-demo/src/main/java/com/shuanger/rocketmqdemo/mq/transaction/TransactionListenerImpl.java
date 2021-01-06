@@ -5,18 +5,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.shuanger.rocketmqdemo.domain.TestOrder;
 import com.shuanger.rocketmqdemo.service.TestOrderService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.client.producer.LocalTransactionState;
-import org.apache.rocketmq.client.producer.TransactionListener;
-import org.apache.rocketmq.common.message.Message;
-import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.spring.annotation.RocketMQTransactionListener;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionListener;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionState;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author: zhaixiaoshuang
