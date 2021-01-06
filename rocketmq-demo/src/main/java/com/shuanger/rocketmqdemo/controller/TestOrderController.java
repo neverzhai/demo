@@ -1,12 +1,10 @@
 package com.shuanger.rocketmqdemo.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.shuanger.rocketmqdemo.OrderStatus;
 import com.shuanger.rocketmqdemo.domain.TestOrder;
 import com.shuanger.rocketmqdemo.mq.ExtRocketMQTemplate;
-import com.shuanger.rocketmqdemo.mq.SysUserInfoProducer;
+import com.shuanger.rocketmqdemo.mq.simple.SysUserInfoProducer;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.Message;

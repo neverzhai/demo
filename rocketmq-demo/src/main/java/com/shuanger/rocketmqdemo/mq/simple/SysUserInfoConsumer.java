@@ -1,4 +1,4 @@
-package com.shuanger.rocketmqdemo.mq;//package com.jdcity.etown.mq;
+package com.shuanger.rocketmqdemo.mq.simple;//package com.jdcity.etown.mq;
 
 import com.shuanger.rocketmqdemo.domain.SyncUserRequest;
 import com.shuanger.rocketmqdemo.service.ISysUserInfoService;

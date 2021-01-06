@@ -1,6 +1,7 @@
-package com.shuanger.rocketmqdemo.mq;//package com.jdcity.etown.mq;
+package com.shuanger.rocketmqdemo.mq.simple;//package com.jdcity.etown.mq;
 
 import com.shuanger.rocketmqdemo.domain.SyncUserRequest;
+import com.shuanger.rocketmqdemo.mq.ExtRocketMQTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
