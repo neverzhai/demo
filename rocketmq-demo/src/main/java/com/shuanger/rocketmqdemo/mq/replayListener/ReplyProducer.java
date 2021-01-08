@@ -45,8 +45,13 @@ public class ReplyProducer {
 
         // 接收Reply, RocketMQ Server 需要升级到4.7.1, 否则会报如下错误: CODE: 10007  DESC: create reply message fail, requestMessage error, property[CLUSTER] is null.
         // 使用同步方式, 需要consumer端返回消息, 使用RocketMQReplyListener
-        Boolean success = extRocketMQTemplate.sendAndReceive(userTopic + ":reply", message, Boolean.class);
-        log.info("receive reply message: {}", success);
+        try {
+            Boolean success = extRocketMQTemplate.sendAndReceive(userTopic + ":reply", message, Boolean.class);
+            log.info("消息发送成功");
+        } catch (Exception e) {
+            // 保证消息可靠性, 需要catch 异常
+            log.info("消息发送失败");
+        }
     }
 
 }
