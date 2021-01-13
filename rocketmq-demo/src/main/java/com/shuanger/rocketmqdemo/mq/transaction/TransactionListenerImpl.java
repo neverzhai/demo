@@ -30,7 +30,6 @@ public class TransactionListenerImpl implements RocketMQLocalTransactionListener
         log.info("执行本地事务, 消息:{}", JSONObject.toJSONString(message));
 
         // 执行本地业务逻辑, 如果本地事务执行成功, 则通知Broker可以提交消息让Consumer进行消费
-
         TestOrder testOrder = (TestOrder) o;
         try {
             boolean success = testOrderService.createOrder(testOrder);
