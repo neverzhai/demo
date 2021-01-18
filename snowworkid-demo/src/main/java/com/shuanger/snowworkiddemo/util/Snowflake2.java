@@ -25,7 +25,7 @@ import java.util.Random;
  */
 public class Snowflake2 {
 
-    private final static long TWEPOCH = 1288834974657L;
+    private final static long TWEPOCH = 1480166465631L;
 
     // 机器标识位数
     private final static long WORKER_ID_BITS = 5L;
