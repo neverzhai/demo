@@ -6,6 +6,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -36,8 +38,7 @@ public class CompletableFutureExample {
         return completable;
     }
 
-    // 处理返回结果
-
+    // 处理返回结果, 
     public static Future<String> thenApplyEx() {
         CompletableFuture<String> completableFuture = CompletableFuture
                 .supplyAsync(() -> "Hello")
@@ -130,7 +131,7 @@ public class CompletableFutureExample {
         Assert.isTrue(future3.isDone());
     }
 
-    // 多个Future并行 -- 无返回值
+    // 多个Future并行 -- 合并返回值
     public String parallelWithResult() {
         CompletableFuture<String> future1
                 = CompletableFuture.supplyAsync(() -> "Hello");
@@ -146,30 +147,53 @@ public class CompletableFutureExample {
         return combined;
     }
 
+    // 错误处理 -- 吃掉异常, handle
+    public String handleException(String name) throws ExecutionException, InterruptedException {
 
+        CompletableFuture<String> completableFuture =  CompletableFuture.supplyAsync(() -> {
+            if (name == null) {
+                throw new RuntimeException("Computation error!");
+            }
+            return "Hello, " + name;
+        }).handle((s, t) -> s != null ? s : "Hello, Stranger!");
 
-
-
-
-
-
-
-
-
-
-
-
-
-    public static void main(String[] args) {
-        CompletableFutureExample example = new CompletableFutureExample();
-        CompletableFuture<CompletableFuture<Integer>> future = example.thenCombineX();
-        try {
-            System.out.println(future.get().get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        return completableFuture.get();
     }
+
+    // 错误处理, 抛出异常
+    public String throwException(String name) throws ExecutionException, InterruptedException {
+        CompletableFuture<String> completableFuture1 = CompletableFuture.supplyAsync(() -> {
+            if (name == null) {
+                throw new RuntimeException("Computation error!");
+            }
+            return "Hello, " + name;
+        });
+        CompletableFuture<String> completableFuture =  completableFuture1
+                .exceptionally(throwable -> throwable.getMessage())
+                .whenCompleteAsync((s, throwable) -> System.out.println(s));
+
+        return completableFuture.get();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        CompletableFutureExample example = new CompletableFutureExample();
+        String world = example.throwException("world");
+//        System.out.println(world);
+    }
+
 
 }
