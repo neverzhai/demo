@@ -26,7 +26,6 @@
 		<module>completatbl-future-demo</module>
 		<module>mysql-join-demo</module>
 		<module>rocketmq-demo</module>
-		<module>kafka-demo</module>
 		<module>snowworkid-demo</module>
 		<module>order-flow-demo</module>
 		<module>redis-demo</module>
