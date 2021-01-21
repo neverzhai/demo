@@ -2,6 +2,7 @@ package com.shuanger.democommon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.shuanger.democommon.domain.UserInfo;
+import com.shuanger.democommon.params.CreateUserRequest;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,4 +14,5 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface UserInfoService extends IService<UserInfo> {
 
+    boolean createUser(CreateUserRequest request);
 }

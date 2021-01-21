@@ -7,5 +7,5 @@ package com.shuanger.democommon.service;
  */
 public interface OperationRecordService {
 
-    boolean saveRecord(String methodName, String value);
+    boolean saveRecord(String value);
 }

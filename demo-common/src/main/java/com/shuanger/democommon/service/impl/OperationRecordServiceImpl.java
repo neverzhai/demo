@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OperationRecordServiceImpl implements OperationRecordService {
 
-    public boolean saveRecord(String methodName, String value) {
+    public boolean saveRecord(String value) {
         log.info("记录操作日志:{}", value);
 
         return true;

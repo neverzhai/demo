@@ -1,6 +1,5 @@
 package com.shuanger.dynamicdemo.aop;
 
-import cn.hutool.json.JSONObject;
 import com.shuanger.democommon.service.OperationRecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -38,12 +37,12 @@ public class OperationAop {
         try {
             return pjp.proceed();
         } finally {
-            saveRecord(methodName,annotation.value());
+            saveRecord(annotation.value());
         }
     }
 
-    private void saveRecord(String methodName, String value) {
-        operationRecordService.saveRecord(methodName, value);
+    private void saveRecord(String value) {
+        operationRecordService.saveRecord(value);
 
     }
 }
