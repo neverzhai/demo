@@ -38,7 +38,7 @@ public class CompletableFutureExample {
         return completable;
     }
 
-    // 处理返回结果, 
+    // 处理返回结果,
     public static Future<String> thenApplyEx() {
         CompletableFuture<String> completableFuture = CompletableFuture
                 .supplyAsync(() -> "Hello")

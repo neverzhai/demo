@@ -30,6 +30,7 @@
 		<module>order-flow-demo</module>
 		<module>redis-demo</module>
 		<module>google-guava-demo</module>
+		<module>LRUDemo</module>
 	</modules>
 
 	<properties>
