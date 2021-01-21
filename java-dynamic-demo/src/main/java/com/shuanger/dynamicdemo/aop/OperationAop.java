@@ -1,6 +1,7 @@
 package com.shuanger.dynamicdemo.aop;
 
 import cn.hutool.json.JSONObject;
+import com.shuanger.democommon.service.OperationRecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -9,6 +10,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.lang.reflect.Method;
 
 /**
@@ -21,6 +23,9 @@ import java.lang.reflect.Method;
 @Component
 @Order(1)
 public class OperationAop {
+
+    @Resource
+    private OperationRecordService operationRecordService;
 
     @Around("@annotation(annotation)&&@annotation(com.shuanger.dynamicdemo.aop.OperationAudit)")
     public Object doAroundCache(ProceedingJoinPoint pjp, OperationAudit annotation) throws Throwable {
@@ -38,7 +43,7 @@ public class OperationAop {
     }
 
     private void saveRecord(String methodName, String value) {
-        log.info("将操作日志写入数据库value: {}", value);
+        operationRecordService.saveRecord(methodName, value);
 
     }
 }
