@@ -33,6 +33,7 @@
 		<module>LRUDemo</module>
 		<module>java-dynamic-demo</module>
 		<module>demo-common</module>
+		<module>dynamic-demo</module>
 	</modules>
 
 	<properties>
