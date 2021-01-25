@@ -8,7 +8,7 @@ import java.util.Date;
  * @date: 2021-01-25 10:16
  * @description:
  */
-public class DateUtil {
+public class DateConvertUtil {
 
     // Date to LocalDate
     public static LocalDate toLocalDate(Date dateToConvert) {
