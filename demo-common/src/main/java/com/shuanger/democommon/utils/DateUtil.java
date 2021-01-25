@@ -1,5 +1,8 @@
 package com.shuanger.democommon.utils;
 
+import java.time.*;
+import java.util.Date;
+
 /**
  * @author: zhaixiaoshuang
  * @date: 2021-01-25 10:16
@@ -7,18 +10,77 @@ package com.shuanger.democommon.utils;
  */
 public class DateUtil {
 
-    // LocalDate to Date
+    // Date to LocalDate
+    public static LocalDate toLocalDate(Date dateToConvert) {
+        return Instant.ofEpochMilli(dateToConvert.getTime())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
 
+    public static LocalDate toLocalDate1(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
 
-    //Date to LocalDate
-
-    //Date 比较 <=
-
-    //LocalDate比较 < > = <= >=
-
-    // LocalDateTime  to LocalDate to Date
+    public static LocalDate toLocalDate2(Date dateToConvert) {
+        return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
+    }
 
     // Date to LocalDateTime
+    public static LocalDateTime toLocalDateTime(Date dateToConvert) {
+        return new java.sql.Timestamp( dateToConvert.getTime()).toLocalDateTime();
+    }
 
-    // LocalDateTime 比较
+    // Date to LocalDateTime
+    public static LocalDateTime toLocalDateTime1(Date dateToConvert) {
+        return Instant.ofEpochMilli(dateToConvert.getTime())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+    }
+
+    public static LocalDateTime toLocalDateTime2(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+    }
+
+    //LocalDate to Date
+    public static Date toDate(LocalDate localDate) {
+        return java.sql.Date.valueOf(localDate);
+    }
+
+    public static Date toDate1(LocalDate localDate) {
+        return java.util.Date.from(localDate.atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
+    }
+
+
+    // LocalDateTime to Date
+    public static Date localDateTimeToDate(LocalDateTime localDateTime) {
+        return java.sql.Timestamp.valueOf(localDateTime);
+    }
+
+    public static Date localDateTimeToDate1(LocalDateTime localDateTime) {
+        return java.util.Date
+                .from(localDateTime.atZone(ZoneId.systemDefault())
+                        .toInstant());
+    }
+
+    public static LocalDate localDateTimeToLocalDate(LocalDateTime localDateTime) {
+        return localDateTime.toLocalDate();
+    }
+
+    public static LocalDateTime localDateToLocalDateTime(LocalDate localDate) {
+        return localDate.atTime(LocalTime.MIN);
+    }
+
+
+    public static void main(String[] args) {
+        Date date = new Date();
+        LocalDate localDate = LocalDate.now();
+
+        LocalDateTime dateTime = LocalDateTime.now();
+    }
 }
