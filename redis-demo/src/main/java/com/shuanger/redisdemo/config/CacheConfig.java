@@ -1,6 +1,9 @@
 package com.shuanger.redisdemo.config;
 
+import com.google.common.base.Charsets;
+import com.google.common.hash.Funnel;
 import com.google.gson.Gson;
+import com.shuanger.redisdemo.utils.BloomFilterHelper;
 import com.shuanger.redisdemo.utils.GsonUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,36 +22,15 @@ import org.springframework.data.redis.serializer.*;
 public class CacheConfig {
 
     @Bean
-    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<Object, Object> template = new RedisTemplate();
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate();
         template.setConnectionFactory(redisConnectionFactory);
-        GenericToStringSerializer genericToStringSerializer = new GenericToStringSerializer(Object.class);
-//        genericToStringSerializer.setConversionService(new ConversionService() {
-//            public boolean canConvert(Class<?> aClass, Class<?> aClass1) {
-//                return true;
-//            }
-//
-//            public boolean canConvert(TypeDescriptor typeDescriptor, TypeDescriptor typeDescriptor1) {
-//                return true;
-//            }
-//
-//            public <T> T convert(Object o, Class<T> aClass) {
-//                String s = GsonUtils.toJson(o);
-//                return GsonUtils.fromJson(s, aClass);
-//            }
-//
-//            public Object convert(Object o, TypeDescriptor typeDescriptor, TypeDescriptor typeDescriptor1) {
-//                return GsonUtils.toJson(o);
-//            }
-//        });
-        Jackson2JsonRedisSerializer jsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
-
         GenericJackson2JsonRedisSerializer jackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
 
-        JdkSerializationRedisSerializer serializationRedisSerializer = new JdkSerializationRedisSerializer();
+//        JdkSerializationRedisSerializer jdkSerializationRedisSerializer = new JdkSerializationRedisSerializer();
 
-        template.setValueSerializer(jackson2JsonRedisSerializer);
         template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(RedisSerializer.byteArray());
 
         template.setHashKeySerializer(StringRedisSerializer.UTF_8);
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
@@ -56,5 +38,13 @@ public class CacheConfig {
         template.afterPropertiesSet();
         return template;
     }
+
+
+    //初始化布隆过滤器，放入到spring容器里面
+    @Bean
+    public BloomFilterHelper<String> initBloomFilterHelper() {
+        return new BloomFilterHelper<>((Funnel<String>) (from, into) -> into.putString(from, Charsets.UTF_8).putString(from, Charsets.UTF_8), 1000000, 0.001);
+    }
+
 
 }

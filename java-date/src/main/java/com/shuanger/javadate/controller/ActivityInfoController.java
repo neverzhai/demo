@@ -6,11 +6,17 @@ import com.shuanger.javadate.requests.CreateActivityRequest;
 import com.shuanger.javadate.requests.QueryByIdRequest;
 import com.shuanger.javadate.requests.UpdateUserInfoRequest;
 import com.shuanger.javadate.service.ActivityInfoService;
+import javafx.application.Application;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.util.ClassUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 
@@ -19,6 +25,7 @@ import javax.annotation.Resource;
  * @date: 2020-08-19 11:43
  * @description: 活动信息controller
  */
+@Slf4j
 @RestController
 @RequestMapping("/date/activity")
 public class ActivityInfoController {
@@ -54,5 +61,16 @@ public class ActivityInfoController {
         boolean success = activityInfoService.updateById(activityInfo);
 
         return success;
+    }
+
+    @RequestMapping("/uploadFile")
+    public String uploadFile(@RequestParam(name = "file", required = false) MultipartFile file) {
+        ClassLoader defaultClassLoader = ClassUtils.getDefaultClassLoader();
+        String path = defaultClassLoader.getResource("c").getPath();
+
+
+        log.info("path: {}", path);
+
+        return path;
     }
 }

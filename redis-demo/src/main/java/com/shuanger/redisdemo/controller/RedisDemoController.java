@@ -5,6 +5,7 @@ import com.shuanger.redisdemo.domain.Person;
 import com.shuanger.redisdemo.entity.Person2;
 import com.shuanger.redisdemo.utils.GsonUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,9 +24,12 @@ public class RedisDemoController {
     @Resource
     private RedisSelfServiceImpl redisSelfService;
 
+    @Resource
+    private RedisTemplate redisTemplate;
+
     @RequestMapping("/string")
     public Boolean setString() {
-        Boolean set = redisSelfService.set("stringSet", "shuanger3");
+        Boolean set = redisSelfService.set("stringSet11", "shuanger3");
 
         return set;
     }
@@ -37,14 +41,13 @@ public class RedisDemoController {
 
     @RequestMapping("/object")
     public Boolean setObject() {
-        Boolean set = redisSelfService.set("objectSet", new Person("testName", 21L));
-
-        return set;
+        redisTemplate.opsForValue().set("objectSet", new Person("testName", 21L));
+        return true;
     }
 
     @RequestMapping("/genericJackJson/get")
     public Object getGenericObject() {
-        Person objectSet = (Person)redisSelfService.get("objectSet");
+        Person objectSet = (Person)redisTemplate.opsForValue().get("objectSet");
 
         return objectSet;
     }

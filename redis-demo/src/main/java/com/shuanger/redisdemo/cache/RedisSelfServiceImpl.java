@@ -44,6 +44,12 @@ public class RedisSelfServiceImpl {
         return true;
     }
 
+    public boolean bloom() {
+
+//        redisTemplate.opsForValue().setBit()
+        return true;
+    }
+
 
 
 
