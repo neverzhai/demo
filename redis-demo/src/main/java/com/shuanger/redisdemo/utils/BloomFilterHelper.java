@@ -12,7 +12,6 @@ import com.google.common.hash.Hashing;
 
 public class BloomFilterHelper<T> {
 
-
     private int numHashFunctions;
     private int bitSize;
     private Funnel<T> funnel;
