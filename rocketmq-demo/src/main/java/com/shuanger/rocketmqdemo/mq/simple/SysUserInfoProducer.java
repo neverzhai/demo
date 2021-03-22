@@ -43,6 +43,7 @@ public class SysUserInfoProducer {
 
         Message<SyncUserRequest> message = MessageBuilder.createMessage(request, new MessageHeaders(headers));
         log.info("发送消息key: {}", messageKey);
+        log.info("message heade;{}", message.getHeaders());
 
         // userTopic 后面使用:分隔增加tag
         extRocketMQTemplate.asyncSend(userTopic+":user",  message, sendCallbackFunc());

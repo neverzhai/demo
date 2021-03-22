@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.nio.channels.Selector;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 /**
  * @author: zhaixiaoshuang
  * @date: 2021-02-24 15:56
@@ -46,8 +53,34 @@ public class BloomFilterController {
 
         boolean b = redisBloomFilter.includeByBloomFilter(bloomFilterHelper, "bloom", orderNum);
 
+
+
         return b;
     }
+
+    public static void main(String[] args) {
+        int[] ints = {1, 2, 3, 4};
+
+//        for (int[] items = ints;;) {
+//            System.out.println(items[1]);
+//
+//        }
+
+        HashMap<Object, Object> hashMap = new HashMap<>();
+        hashMap.entrySet();
+
+        new ReentrantLock();
+
+        new ReentrantReadWriteLock();
+
+            new ConcurrentHashMap<>();
+    }
+
+
+//    new HashMap<>()
+
+
+
 
 
 }
