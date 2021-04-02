@@ -30,7 +30,7 @@ public class CacheConfig {
 //        JdkSerializationRedisSerializer jdkSerializationRedisSerializer = new JdkSerializationRedisSerializer();
 
         template.setKeySerializer(new StringRedisSerializer());
-        template.setValueSerializer(RedisSerializer.byteArray());
+        template.setValueSerializer(jackson2JsonRedisSerializer);
 
         template.setHashKeySerializer(StringRedisSerializer.UTF_8);
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
