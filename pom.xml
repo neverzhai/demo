@@ -34,6 +34,7 @@
 		<module>java-dynamic-demo</module>
 		<module>demo-common</module>
 		<module>dynamic-demo</module>
+		<module>http-demo</module>
 	</modules>
 
 	<properties>
